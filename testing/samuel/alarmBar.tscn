@@ -11,7 +11,7 @@ bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 842, 72 )
+"points": PoolVector2Array( 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 841, 73 )
 }
 
 [node name="alarmBar" type="ProgressBar"]
@@ -36,16 +36,24 @@ curve = SubResource( 3 )
 
 [node name="minAwakeness" type="PathFollow2D" parent="minMaxPath"]
 position = Vector2( 0, 72 )
+rotation = 0.00119074
 
 [node name="minAwakenessMarker" type="Sprite" parent="minMaxPath/minAwakeness"]
-position = Vector2( 0.999999, -33.75 )
+position = Vector2( 2, -33 )
 scale = Vector2( 0.230769, 0.303191 )
 texture = ExtResource( 2 )
 
 [node name="maxAwakeness" type="PathFollow2D" parent="minMaxPath"]
 position = Vector2( 0, 72 )
+rotation = 0.00119074
 
 [node name="maxAwakenessMarker" type="Sprite" parent="minMaxPath/maxAwakeness"]
 position = Vector2( -1.5, -35 )
 scale = Vector2( 0.192308, 0.312057 )
 texture = ExtResource( 2 )
+
+[node name="awakenessTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[connection signal="timeout" from="awakenessTimer" to="." method="_on_awakenessTimer_timeout"]
