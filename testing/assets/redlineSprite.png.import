@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeholderColumn.png-91a15085a2d23da5f1da70cab9f00ab3.stex"
+path="res://.import/redlineSprite.png-327b040e5281ce8a4f3528b245b83761.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testing/assets/placeholderColumn.png"
-dest_files=[ "res://.import/placeholderColumn.png-91a15085a2d23da5f1da70cab9f00ab3.stex" ]
+source_file="res://testing/assets/redlineSprite.png"
+dest_files=[ "res://.import/redlineSprite.png-327b040e5281ce8a4f3528b245b83761.stex" ]
 
 [params]
 
