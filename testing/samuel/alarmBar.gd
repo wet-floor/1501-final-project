@@ -8,7 +8,6 @@ var stage1Complete = false;
 var stage2Complete = false;
 var stage3Complete = false;
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	value = percent;
