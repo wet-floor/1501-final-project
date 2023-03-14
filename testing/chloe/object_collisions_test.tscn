@@ -7,8 +7,6 @@
 [node name="RigidBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 106, 61 )
 gravity_scale = 10.0
-script = null
 
 [node name="RigidBody2D2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 106, 113 )
-script = null
