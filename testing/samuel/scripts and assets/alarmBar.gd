@@ -1,9 +1,12 @@
 extends ProgressBar
-
+# Default starting percent
 var percent = 100;
+# Minimum percent, need to be higher than this
 var min_percent = 0;
+# Max percent, need to be under this
 var max_percent = 70;
 var completion = 0;
+# Marks each stage as complete so it doesn't run it multiple times
 var stage1Complete = false;
 var stage2Complete = false;
 var stage3Complete = false;
@@ -41,7 +44,7 @@ func _on_awakenessTimer_timeout():
 		# Level ending code here
 		print("win")
 		pass
-	# Print
+	# Print testing (delete when finished)
 	print("percent: " + str(percent));
 	print("completion: " + str(completion));
 	print("max unit offset: " + str($minMaxPath/maxAwakeness.unit_offset))
@@ -51,6 +54,7 @@ func _on_awakenessTimer_timeout():
 func stage1():
 	min_percent = 20
 	max_percent = 60
+	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.2);
 	$minMaxPath/maxAwakeness.unit_offset = (0.6);
 	pass
@@ -58,6 +62,7 @@ func stage1():
 func stage2():
 	min_percent = 50
 	max_percent = 80
+	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.5);
 	$minMaxPath/maxAwakeness.unit_offset = (0.8);
 	pass
@@ -65,6 +70,7 @@ func stage2():
 func stage3():
 	min_percent = 80
 	max_percent = 100
+	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.8);
 	$minMaxPath/maxAwakeness.unit_offset = (1);
 	pass
