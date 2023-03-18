@@ -13,3 +13,4 @@ func _show_bar():
 func _process(delta):
 	# Each frame change bar value to the percent
 	value = percent;
+	

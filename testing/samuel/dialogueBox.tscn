@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://testing/samuel/scripts and assets/dialogueBox.gd" type="Script" id=1]
+[ext_resource path="res://testing/samuel/scripts and assets/tempSprite.png" type="Texture" id=2]
+[ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=8]
+size = 10
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 22
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 10
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
+extra_spacing_top = -5
+extra_spacing_char = 10
+extra_spacing_space = 3
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 22
+font_data = ExtResource( 3 )
+
+[node name="dialogueBox" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="dialogue" type="ColorRect" parent="."]
+margin_left = 259.0
+margin_top = 478.0
+margin_right = 951.0
+margin_bottom = 692.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+dialogPath = "res://testing/samuel/testingText.json"
+
+[node name="speakerName" type="RichTextLabel" parent="dialogue"]
+margin_left = 24.0
+margin_top = 14.0
+margin_right = 302.0
+margin_bottom = 51.0
+custom_fonts/mono_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 5 )
+bbcode_enabled = true
+bbcode_text = "name"
+text = "name"
+
+[node name="speakerDialog" type="RichTextLabel" parent="dialogue"]
+margin_left = 30.0
+margin_top = 57.0
+margin_right = 660.0
+margin_bottom = 191.0
+custom_fonts/mono_font = SubResource( 7 )
+custom_fonts/bold_font = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 6 )
+bbcode_enabled = true
+bbcode_text = "text"
+text = "text"
+
+[node name="textShowTimer" type="Timer" parent="dialogue"]
+
+[node name="speakerPortrait" type="Sprite" parent="dialogue"]
+visible = false
+position = Vector2( 100, -100 )
+scale = Vector2( 0.47777, 0.525491 )
+texture = ExtResource( 2 )
