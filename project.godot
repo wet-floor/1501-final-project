@@ -11,7 +11,6 @@ config_version=4
 [application]
 
 config/name="1501 Final Project"
-run/main_scene="res://testing/samuel/alarmBar.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
@@ -101,7 +100,7 @@ player_shoot={
 
 [physics]
 
-common/physics_fps=120
+common/physics_fps=300
 common/enable_pause_aware_picking=true
 2d/default_gravity_vector=Vector2( 0, 0 )
 

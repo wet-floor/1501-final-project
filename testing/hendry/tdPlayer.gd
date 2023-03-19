@@ -10,6 +10,18 @@ var input_dir = Vector2.ZERO
 onready var hand = get_node("Hand")
 onready var inventory = get_node("Hand/Inventory")
 
+var direct_range_objects = []
+var charge_power = 0
+
+export var suck_power = 10
+export var shoot_strength = 1
+
+var sucking = false
+
+export var default_charge_power = 1
+export var charge_rate = 1.0
+
+var released_object : RigidBody2D
 
 var screensize
 
@@ -17,9 +29,8 @@ var screensize
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screensize = get_viewport_rect().size
-	pass # Replace with function body.
 
-
+## PLAYER MOVEMENT 
 func get_input():
 	input_dir = Vector2.ZERO
 
@@ -33,21 +44,12 @@ func get_input():
 		input_dir.y -= 1
 
 	if Input.is_action_pressed("player_down"):
-		input_dir.y += 1
+		input_dir.y += 1 
 	
 	input_dir = input_dir.normalized()
 
-
-func sucking():
-	pass
-
-
-func shooting():
-	pass
-
-
-func _physics_process(delta):
-	get_input()
+# player move and look
+func control():
 	input_dir = move_and_slide(input_dir * speed)
 	
 	var mouse = get_global_mouse_position()
@@ -62,10 +64,103 @@ func _physics_process(delta):
 		var hand_to_body_distance = hand.global_position.distance_to(self.global_position)
 		var hand_rotation = asin(hand_to_body_distance / hand_to_mouse_distance)
 		hand.rotation = -hand_rotation
+	pass
+
+## PLAYER ACTIONS
+# get player input for sucking and shooting
+func get_action(delta):
+	if Input.is_action_pressed("player_suck"):
+		suck()
+	else:
+		sucking = false
+	
+	if Input.is_action_pressed("player_shoot"):
+		charge_shot(delta)
+		
+	if Input.is_action_just_released("player_shoot"):
+		shoot()
 
 
-func _process(delta):
+func suck():
+	# if inventory.get_current_item() == null:
+		sucking = true
+		for body in direct_range_objects:
+			var suck_impulse = (inventory.global_position - body.global_position).normalized() * suck_power
+			body.apply_central_impulse(suck_impulse)
+	# else:
+		# sucking = false
+
+
+func charge_shot(delta):
+	if inventory.get_current_item() != null:
+		charge_power += charge_rate * delta
+		charge_power = clamp(charge_power, 0, 2)
+		
+	pass
+
+
+func shoot():
+	if inventory.get_current_item() != null:
+		
+		released_object = null
+		
+		# if the charge power is super small, assume the default value
+		if charge_power <= 0.2:
+			charge_power = default_charge_power
+	
+	
+		var released_object : RigidBody2D = inventory.get_current_item()
+		
+		print(charge_power)
+		var shoot_impulse = (get_global_mouse_position() - inventory.global_position).normalized()
+		shoot_impulse = shoot_impulse * shoot_strength * charge_power 
+		
+		inventory.release_item()
+		released_object.apply_central_impulse(shoot_impulse/2)
+		
+		charge_power = 0  # reset the charge power back to 0 after shooting
+
+
+func object_follow(delta):
+	for item in inventory.get_inventory():
+		if item != null:
+			var body : RigidBody2D = item
+			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 40)
+			body.global_rotation = inventory.global_rotation
+
+
+## PROCESSING
+func _physics_process(delta):
+	
+	# movement and look
+	get_input()
+	control()
+	
+	# sucking and shooting
+	get_action(delta)
+	
 	screensize = get_viewport_rect().size
 	position.x = clamp(position.x, 0, screensize.x)
 	position.y = clamp(position.y, 0, screensize.y)
+	
+	object_follow(delta)
 
+
+func _process(delta):
+	pass
+
+## SIGNALS
+func _on_Direct_Range_body_entered(body):
+	direct_range_objects.append(body)
+	print(direct_range_objects)
+
+
+func _on_Direct_Range_body_exited(body):
+	direct_range_objects.erase(body)
+	print(direct_range_objects)
+
+
+func _on_Inventory_body_entered(body):
+	if sucking and inventory.get_current_item() == null:
+		inventory.add_item(body)
+		print("added", body)
