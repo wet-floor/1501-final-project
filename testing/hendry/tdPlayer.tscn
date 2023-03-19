@@ -31,9 +31,19 @@ position = Vector2( 13.8125, -0.4375 )
 scale = Vector2( 0.425, 0.346239 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hand"]
+[node name="Arm" type="CollisionShape2D" parent="Hand"]
 position = Vector2( 16.125, -0.749992 )
 shape = SubResource( 2 )
 
 [node name="Inventory" parent="Hand" instance=ExtResource( 4 )]
 position = Vector2( 58, 0 )
+
+[node name="Direct Range" type="Area2D" parent="Hand"]
+position = Vector2( 45, 0 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Direct Range"]
+polygon = PoolVector2Array( 30, 0, 30, -10, 500, -200, 550, -60, 550, 60, 500, 200, 30, 10 )
+
+[connection signal="body_entered" from="Hand/Inventory" to="." method="_on_Inventory_body_entered"]
+[connection signal="body_entered" from="Hand/Direct Range" to="." method="_on_Direct_Range_body_entered"]
+[connection signal="body_exited" from="Hand/Direct Range" to="." method="_on_Direct_Range_body_exited"]
