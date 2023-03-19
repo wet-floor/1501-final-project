@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://testing/samuel/scripts and assets/dialogueBox.gd" type="Script" id=1]
-[ext_resource path="res://testing/samuel/scripts and assets/tempSprite.png" type="Texture" id=2]
+[ext_resource path="res://testing/samuel/scripts/dialogueBox.gd" type="Script" id=1]
+[ext_resource path="res://testing/samuel/assets/tempSprite.png" type="Texture" id=2]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://testing/samuel/assets/fullBeepSound.mp3" type="AudioStream" id=4]
+[ext_resource path="res://testing/samuel/assets/beepSoundShort.mp3" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=8]
 size = 10
@@ -31,10 +33,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="dialogue" type="ColorRect" parent="."]
-margin_left = 259.0
-margin_top = 478.0
-margin_right = 951.0
-margin_bottom = 692.0
+margin_left = 296.0
+margin_top = 482.0
+margin_right = 988.0
+margin_bottom = 696.0
 color = Color( 0, 0, 0, 1 )
 script = ExtResource( 1 )
 dialogPath = "res://testing/samuel/testingText.json"
@@ -69,3 +71,11 @@ visible = false
 position = Vector2( 100, -100 )
 scale = Vector2( 0.47777, 0.525491 )
 texture = ExtResource( 2 )
+
+[node name="textSound" type="AudioStreamPlayer2D" parent="dialogue"]
+stream = ExtResource( 5 )
+volume_db = -19.077
+
+[node name="enterSound" type="AudioStreamPlayer2D" parent="dialogue"]
+stream = ExtResource( 4 )
+volume_db = -16.773

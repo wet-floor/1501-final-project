@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/beepSoundShort.mp3-677e83899eb36fb88608fd8805a8f05c.mp3str"
+
+[deps]
+
+source_file="res://testing/samuel/assets/beepSoundShort.mp3"
+dest_files=[ "res://.import/beepSoundShort.mp3-677e83899eb36fb88608fd8805a8f05c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

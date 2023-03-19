@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rectangle-transparent-black-outline-of-box-11562876432h8xw61bqb4-modified.png-fc530f3551332c070236e98fb9ebdbe8.stex"
+path="res://.import/tempSprite.png-6818ebd4c50bccf060c5a9a409599b90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testing/samuel/scripts and assets/rectangle-transparent-black-outline-of-box-11562876432h8xw61bqb4-modified.png"
-dest_files=[ "res://.import/rectangle-transparent-black-outline-of-box-11562876432h8xw61bqb4-modified.png-fc530f3551332c070236e98fb9ebdbe8.stex" ]
+source_file="res://testing/samuel/assets/tempSprite.png"
+dest_files=[ "res://.import/tempSprite.png-6818ebd4c50bccf060c5a9a409599b90.stex" ]
 
 [params]
 

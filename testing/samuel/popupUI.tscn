@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://testing/samuel/scripts/popupBox.gd" type="Script" id=2]
+[ext_resource path="res://testing/samuel/assets/fullBeepSound.mp3" type="AudioStream" id=3]
+[ext_resource path="res://testing/samuel/assets/beepSoundShort.mp3" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[node name="popupUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="popupBox" type="ColorRect" parent="."]
+margin_left = 367.0
+margin_top = 30.0
+margin_right = 817.0
+margin_bottom = 191.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 2 )
+
+[node name="speakerName" type="RichTextLabel" parent="popupBox"]
+margin_left = 12.0
+margin_top = 6.0
+margin_right = 252.0
+margin_bottom = 42.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+text = "Name"
+
+[node name="speakerDialog" type="RichTextLabel" parent="popupBox"]
+margin_left = 21.0
+margin_top = 38.0
+margin_right = 424.0
+margin_bottom = 146.0
+custom_fonts/normal_font = SubResource( 2 )
+bbcode_enabled = true
+text = "Text"
+
+[node name="textShowTimer" type="Timer" parent="popupBox"]
+
+[node name="textSound" type="AudioStreamPlayer2D" parent="popupBox"]
+stream = ExtResource( 4 )
+volume_db = -17.846
+
+[node name="enterSound" type="AudioStreamPlayer2D" parent="popupBox"]
+stream = ExtResource( 3 )
+volume_db = -12.923

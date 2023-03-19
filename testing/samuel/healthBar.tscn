@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://testing/samuel/scripts and assets/healthBar.gd" type="Script" id=1]
+[ext_resource path="res://testing/samuel/scripts/healthBar.gd" type="Script" id=1]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://testing/samuel/scripts and assets/rectangle-transparent-black-outline-of-box-11562876432h8xw61bqb4-modified.png" type="Texture" id=3]
+[ext_resource path="res://testing/samuel/assets/rectangle-transparent-black-outline-of-box-11562876432h8xw61bqb4-modified.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
