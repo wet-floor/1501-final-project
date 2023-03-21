@@ -1,73 +1,69 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://testing/hendry/tdPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://testing/chloe/placeholder_assets/placeholder_object.png" type="Texture" id=2]
-[ext_resource path="res://testing/hendry/test_object.gd" type="Script" id=3]
+[ext_resource path="res://testing/hendry/testObject2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://testing/hendry/Component.tscn" type="PackedScene" id=4]
+[ext_resource path="res://testing/hendry/testObject1.tscn" type="PackedScene" id=5]
 
-[sub_resource type="PhysicsMaterial" id=3]
-friction = 0.72
-rough = true
-bounce = 0.23
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 75, 377.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 756.5, 56.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 44, 44 )
 
-[sub_resource type="PhysicsMaterial" id=4]
-friction = 0.83
-rough = true
-bounce = 0.31
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10, 19.5 )
-
 [node name="Root" type="Node"]
 
 [node name="tdPlayer" parent="." instance=ExtResource( 1 )]
-collision_layer = 3
-collision_mask = 3
+position = Vector2( 141, 153 )
 suck_power = 30
 shoot_strength = 5000
 charge_rate = 3.0
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 531, 369 )
-collision_layer = 2
-collision_mask = 2
-mass = 1.49
-physics_material_override = SubResource( 3 )
+[node name="RigidBody2D" parent="." groups=["object"] instance=ExtResource( 5 )]
+position = Vector2( 526, 473 )
 linear_damp = 3.0
 angular_damp = 3.0
-script = ExtResource( 3 )
+script = null
+
+[node name="RigidBody2D2" parent="." groups=["object"] instance=ExtResource( 3 )]
+position = Vector2( 847, 349 )
+script = null
+
+[node name="Component" parent="." groups=["object"] instance=ExtResource( 4 )]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Left Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2( -76, 373.5 )
+shape = SubResource( 1 )
+
+[node name="Right Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 1356, 361 )
+shape = SubResource( 1 )
+
+[node name="Top Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 639, -58 )
+shape = SubResource( 2 )
+
+[node name="Bottom Wall" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 674, 777 )
+shape = SubResource( 2 )
+
+[node name="RigidBody2D3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 256, 385 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="RigidBody2D"]
-position = Vector2( 0.999994, 0.999994 )
-scale = Vector2( 2.75, 2.75 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D3"]
 position = Vector2( 2, 1 )
 shape = SubResource( 5 )
 
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
-position = Vector2( 1020, 217 )
-collision_layer = 2
-collision_mask = 2
-physics_material_override = SubResource( 4 )
-linear_damp = 3.0
-angular_damp = 1.993
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="RigidBody2D2"]
-position = Vector2( 0.99999, -1 )
-scale = Vector2( 0.624999, 1.25 )
+[node name="Sprite2" type="Sprite" parent="RigidBody2D3"]
+position = Vector2( 0.999994, 0.999994 )
+scale = Vector2( 2.75, 2.75 )
 texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 6 )

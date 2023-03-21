@@ -13,7 +13,7 @@ func get_input():
 		else:
 			currently_selected -= 1
 		print(inventory[currently_selected])
-		print(get_children())
+		# print(get_children())
 
 	if Input.is_action_just_released("inv_right"):
 		if currently_selected + 1 == inventory.size():
@@ -21,7 +21,7 @@ func get_input():
 		else:
 			currently_selected += 1
 		print(inventory[currently_selected])
-		print(get_children())
+		# print(get_children())
 
 
 # add items to the inventory
@@ -70,13 +70,18 @@ func _physics_process(delta):
 			n.hide()
 			n.collision_layer = 0
 			n.collision_mask = 0
+			
+			# n.global_position = global_position
+			# n.global_rotation = global_rotation
+			# n.linear_velocity = Vector2.ZERO
+			# n.angular_velocity = 0
 	
 	# 2. show the thing that's currently selected
 	if inventory[currently_selected] != null:
 		var n : RigidBody2D = inventory[currently_selected]
 		n.show()
-		n.collision_layer = 2
-		n.collision_mask = 2
+		n.collision_layer = 1
+		n.collision_mask = 1
 	
 		# TODO: some inventory items don't get displayed and instead has many items within it
 		#if inventory[currently_selected].body_is_in_group("stackable"):

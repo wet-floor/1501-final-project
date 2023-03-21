@@ -82,13 +82,14 @@ func get_action(delta):
 
 
 func suck():
-	# if inventory.get_current_item() == null:
+	if inventory.get_current_item() == null:
 		sucking = true
+		# print(sucking)
 		for body in direct_range_objects:
 			var suck_impulse = (inventory.global_position - body.global_position).normalized() * suck_power
 			body.apply_central_impulse(suck_impulse)
-	# else:
-		# sucking = false
+	else:
+		sucking = false
 
 
 func charge_shot(delta):
@@ -151,12 +152,14 @@ func _process(delta):
 
 ## SIGNALS
 func _on_Direct_Range_body_entered(body):
-	direct_range_objects.append(body)
+	if body.is_in_group("object"):
+		direct_range_objects.append(body)
 	print(direct_range_objects)
 
 
 func _on_Direct_Range_body_exited(body):
-	direct_range_objects.erase(body)
+	if body.is_in_group("object"):
+		direct_range_objects.erase(body)
 	print(direct_range_objects)
 
 
