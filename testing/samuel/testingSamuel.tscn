@@ -8,10 +8,39 @@ script = ExtResource( 2 )
 
 [node name="popupUI" parent="." instance=ExtResource( 3 )]
 
-[node name="fiveSecTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
+[node name="showTextButton" type="Button" parent="."]
+margin_left = 460.0
+margin_top = 320.0
+margin_right = 716.0
+margin_bottom = 389.0
+text = "Press Enter"
 
-[node name="tenSecTimer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
+[node name="nameText" type="TextEdit" parent="showTextButton"]
+margin_left = 288.0
+margin_top = 2.0
+margin_right = 566.0
+margin_bottom = 37.0
+text = "[color=red]Washing Machine[/color]"
+
+[node name="textText" type="TextEdit" parent="showTextButton"]
+margin_left = 296.0
+margin_top = 77.0
+margin_right = 541.0
+margin_bottom = 156.0
+text = "It's washing time"
+
+[node name="text" type="Label" parent="showTextButton"]
+margin_left = 360.0
+margin_top = 59.0
+margin_right = 464.0
+margin_bottom = 73.0
+text = "Enter Some Text"
+
+[node name="name" type="Label" parent="showTextButton"]
+margin_left = 367.0
+margin_top = -23.0
+margin_right = 457.0
+margin_bottom = 7.0
+text = "Enter A Name"
+
+[connection signal="pressed" from="showTextButton" to="." method="_on_Button_pressed"]

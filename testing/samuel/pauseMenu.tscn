@@ -1,0 +1,11 @@
+[gd_scene format=2]
+
+[node name="pauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuButton" type="MenuButton" parent="."]
+margin_left = 538.0
+margin_top = 25.0
+margin_right = 616.0
+margin_bottom = 106.0

@@ -30,7 +30,9 @@ func getDialog(name, text) -> Array:
 		return text
 
 func showText(name, text):
-	# Sets the finished to false so the player pressing accept works as intended
+	# If there is currently a box shown, yield showing text until the current one has ended
+	if shown == true:
+		yield(self, "messageEnded")
 	self.show()
 	shown = true
 	finished = false
@@ -49,16 +51,16 @@ func showText(name, text):
 	# While the visible characters is shorter than the length of the text, continuously show the
 	# next character
 	while $speakerDialog.visible_characters < len($speakerDialog.text):
+		#print($speakerDialog.visible_characters)
+		#print(len($speakerDialog.text))
 		$speakerDialog.visible_characters += 1
 		$textSound.play()
 		$textShowTimer.start()
 		# Makes sure each letter only appears after the timer runs out
 		yield($textShowTimer, "timeout")
-	
-	# Once all text is shown, finished is set to true, and the phrase count (the current phrase
-	# to be shown) moves forward by one.
-	finished = true
-	return
+		if $speakerDialog.visible_characters >= (len($speakerDialog.text)):
+			finished = true
+			break
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -67,9 +69,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		if finished && shown:
 			$enterSound.play()
-			emit_signal("messageEnded")
 			self.hide()
+			finished = false
 			shown = false
-		else:
+			emit_signal("messageEnded")
+		elif shown:
 			$speakerDialog.visible_characters = len($speakerDialog.text)
+		else:
+			pass
 			
