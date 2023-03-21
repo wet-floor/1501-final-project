@@ -17,6 +17,7 @@ func _ready():
 	# Set wait timer to equal to text speed
 	$textShowTimer.wait_time = textSpeed
 
+# Converts text into an array, which is used to show the letters one by one
 func getDialog(name, text) -> Array:
 	if typeof(text) == TYPE_ARRAY:
 		return text
@@ -33,6 +34,7 @@ func showText(name, text):
 	# If there is currently a box shown, yield showing text until the current one has ended
 	if shown == true:
 		yield(self, "messageEnded")
+		
 	self.show()
 	shown = true
 	finished = false
@@ -51,18 +53,17 @@ func showText(name, text):
 	# While the visible characters is shorter than the length of the text, continuously show the
 	# next character
 	while $speakerDialog.visible_characters < len($speakerDialog.text):
-		#print($speakerDialog.visible_characters)
-		#print(len($speakerDialog.text))
 		$speakerDialog.visible_characters += 1
 		$textSound.play()
 		$textShowTimer.start()
 		# Makes sure each letter only appears after the timer runs out
 		yield($textShowTimer, "timeout")
+		# Once all letters are shown, set finished to true
 		if $speakerDialog.visible_characters >= (len($speakerDialog.text)):
 			finished = true
 			break
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame
 func _process(delta):
 	# If the player presses accept, it will either move onto the next phrase or
 	# skip to the end of current phrase if still not complete.
@@ -77,4 +78,3 @@ func _process(delta):
 			$speakerDialog.visible_characters = len($speakerDialog.text)
 		else:
 			pass
-			
