@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/placeholder_damaging_object.png-36a315553df24e1390db4fc9124d550a.stex"
+path="res://.import/placeholder_single_tile1.png-10a1bd2646103da8641e8cbe50cbe3d5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testing/chloe/placeholder_assets/placeholder_damaging_object.png"
-dest_files=[ "res://.import/placeholder_damaging_object.png-36a315553df24e1390db4fc9124d550a.stex" ]
+source_file="res://testing/chloe/placeholder_assets/placeholder_single_tile1.png"
+dest_files=[ "res://.import/placeholder_single_tile1.png-10a1bd2646103da8641e8cbe50cbe3d5.stex" ]
 
 [params]
 
