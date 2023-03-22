@@ -18,7 +18,7 @@ func _ready():
 	$textShowTimer.wait_time = textSpeed
 
 # Converts text into an array, which is used to show the letters one by one
-func getDialog(name, text) -> Array:
+func getDialog(_name, text) -> Array:
 	if typeof(text) == TYPE_ARRAY:
 		return text
 	if typeof (text) == TYPE_STRING:
@@ -61,7 +61,7 @@ func showText(name, text):
 			break
 
 # Called every frame
-func _process(delta):
+func _process(_delta):
 	# If the player presses accept, it will either move onto the next phrase or
 	# skip to the end of current phrase if still not complete.
 	if Input.is_action_just_pressed("ui_accept"):
