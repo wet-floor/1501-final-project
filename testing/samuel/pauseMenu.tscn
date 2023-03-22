@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://testing/samuel/scripts/pauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=2]
@@ -6,25 +6,116 @@
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 28
-font_data = ExtResource( 2 )
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0.517647, 0.4, 0.784314, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=5]
-size = 28
-font_data = ExtResource( 2 )
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.0901961, 0, 0.368627, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="DynamicFont" id=6]
-size = 28
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.25098, 0.12549, 0.580392, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.290196, 0.117647, 0.576471, 1 )
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="DynamicFont" id=4]
+size = 25
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 25
+[sub_resource type="DynamicFont" id=6]
+size = 28
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.623529, 0.388235, 0.741176, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.321569, 0.0627451, 0.345098, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.462745, 0.12549, 0.494118, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.65098, 0.34902, 0.709804, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0.388235, 0.0901961, 0.396078, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.47451, 0.152941, 0.572549, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.654902, 0.360784, 0.713726, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.407843, 0.0745098, 0.431373, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.458824, 0.129412, 0.572549, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="pauseMenu" type="Control"]
 anchor_right = 1.0
@@ -36,75 +127,91 @@ margin_left = 586.0
 margin_top = 15.0
 margin_right = 658.0
 margin_bottom = 52.0
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 8 )
 text = "Pause"
 
-[node name="pauseMenuVisual" type="ColorRect" parent="."]
-margin_left = 392.0
-margin_top = 78.0
-margin_right = 852.0
+[node name="pauseMenuVisual" type="Panel" parent="."]
+margin_left = 388.0
+margin_top = 75.0
+margin_right = 851.0
 margin_bottom = 585.0
-color = Color( 0.317647, 0.12549, 0.658824, 1 )
-
-[node name="VolumeButton" type="Button" parent="pauseMenuVisual"]
-margin_left = 70.0
-margin_top = 63.0
-margin_right = 394.0
-margin_bottom = 113.0
-custom_fonts/font = SubResource( 2 )
-text = "Volume"
-
-[node name="BackButtonMain" type="Button" parent="pauseMenuVisual"]
-margin_left = 83.0
-margin_top = 414.0
-margin_right = 389.0
-margin_bottom = 470.0
-custom_fonts/font = SubResource( 5 )
-text = "Resume"
-
-[node name="BackButtonVolume" type="Button" parent="pauseMenuVisual"]
-margin_left = 84.0
-margin_top = 414.0
-margin_right = 388.0
-margin_bottom = 470.0
-custom_fonts/font = SubResource( 6 )
-text = "Back"
-
-[node name="SEVolume" type="Label" parent="pauseMenuVisual"]
-margin_left = 127.0
-margin_top = 229.0
-margin_right = 349.0
-margin_bottom = 261.0
-custom_fonts/font = SubResource( 3 )
-text = "Sound Effects"
-
-[node name="MusicVolume" type="Label" parent="pauseMenuVisual"]
-margin_left = 188.0
-margin_top = 97.0
-margin_right = 272.0
-margin_bottom = 132.0
-custom_fonts/font = SubResource( 4 )
-text = "Music"
-
-[node name="MusicVolumeSlider" type="HSlider" parent="pauseMenuVisual"]
-margin_left = 49.0
-margin_top = 141.0
-margin_right = 417.0
-margin_bottom = 190.0
-min_value = -60.0
-max_value = 0.0
+custom_styles/panel = SubResource( 7 )
 
 [node name="SEVolumeSlider" type="HSlider" parent="pauseMenuVisual"]
 margin_left = 48.0
-margin_top = 268.0
+margin_top = 271.0
 margin_right = 416.0
-margin_bottom = 317.0
+margin_bottom = 320.0
 min_value = -60.0
 max_value = 0.0
 
+[node name="MusicVolumeSlider" type="HSlider" parent="pauseMenuVisual"]
+margin_left = 49.0
+margin_top = 144.0
+margin_right = 417.0
+margin_bottom = 193.0
+min_value = -60.0
+max_value = 0.0
+
+[node name="MusicVolume" type="Label" parent="pauseMenuVisual"]
+margin_left = 188.0
+margin_top = 100.0
+margin_right = 272.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 4 )
+text = "Music"
+
+[node name="SEVolume" type="Label" parent="pauseMenuVisual"]
+margin_left = 127.0
+margin_top = 232.0
+margin_right = 349.0
+margin_bottom = 264.0
+custom_fonts/font = SubResource( 3 )
+text = "Sound Effects"
+
+[node name="BackButtonVolume" type="Button" parent="pauseMenuVisual"]
+margin_left = 84.0
+margin_top = 417.0
+margin_right = 388.0
+margin_bottom = 473.0
+focus_mode = 0
+custom_fonts/font = SubResource( 6 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 18 )
+custom_styles/normal = SubResource( 12 )
+text = "Back"
+
+[node name="BackButtonMain" type="Button" parent="pauseMenuVisual"]
+margin_left = 83.0
+margin_top = 417.0
+margin_right = 389.0
+margin_bottom = 473.0
+focus_mode = 0
+custom_fonts/font = SubResource( 5 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 19 )
+custom_styles/normal = SubResource( 9 )
+text = "Resume"
+
+[node name="VolumeButton" type="Button" parent="pauseMenuVisual"]
+margin_left = 70.0
+margin_top = 66.0
+margin_right = 394.0
+margin_bottom = 116.0
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/normal = SubResource( 10 )
+text = "Volume"
+
 [connection signal="pressed" from="pauseButton" to="." method="_on_pauseButton_pressed"]
-[connection signal="pressed" from="pauseMenuVisual/VolumeButton" to="." method="_on_VolumeButton_pressed"]
-[connection signal="pressed" from="pauseMenuVisual/BackButtonMain" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="pauseMenuVisual/BackButtonVolume" to="." method="_on_BackButtonVolume_pressed"]
-[connection signal="value_changed" from="pauseMenuVisual/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="value_changed" from="pauseMenuVisual/SEVolumeSlider" to="." method="_on_SEVolumeSlider_value_changed"]
+[connection signal="value_changed" from="pauseMenuVisual/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
+[connection signal="pressed" from="pauseMenuVisual/BackButtonVolume" to="." method="_on_BackButtonVolume_pressed"]
+[connection signal="pressed" from="pauseMenuVisual/BackButtonMain" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="pauseMenuVisual/VolumeButton" to="." method="_on_VolumeButton_pressed"]

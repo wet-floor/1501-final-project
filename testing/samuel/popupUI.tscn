@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://testing/samuel/scripts/popupBox.gd" type="Script" id=2]
 [ext_resource path="res://testing/samuel/assets/fullBeepSound.mp3" type="AudioStream" id=3]
 [ext_resource path="res://testing/samuel/assets/beepSoundShort.mp3" type="AudioStream" id=4]
+[ext_resource path="res://testing/samuel/scripts/popupBox.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -15,26 +22,26 @@ font_data = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="popupBox" type="ColorRect" parent="."]
+[node name="popupBox" type="Panel" parent="."]
 margin_left = 367.0
 margin_top = 30.0
 margin_right = 817.0
-margin_bottom = 191.0
-color = Color( 0, 0, 0, 1 )
-script = ExtResource( 2 )
+margin_bottom = 193.0
+custom_styles/panel = SubResource( 3 )
+script = ExtResource( 5 )
 
 [node name="speakerName" type="RichTextLabel" parent="popupBox"]
-margin_left = 12.0
-margin_top = 6.0
-margin_right = 440.0
-margin_bottom = 35.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 205.0
+margin_bottom = 30.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 text = "Name"
 
 [node name="speakerDialog" type="RichTextLabel" parent="popupBox"]
-margin_left = 21.0
-margin_top = 45.0
+margin_left = 227.0
+margin_top = 10.0
 margin_right = 432.0
 margin_bottom = 146.0
 custom_fonts/normal_font = SubResource( 2 )
@@ -43,12 +50,13 @@ text = "Text"
 
 [node name="textShowTimer" type="Timer" parent="popupBox"]
 
-[node name="textSound" type="AudioStreamPlayer2D" parent="popupBox"]
+[node name="textSound" type="AudioStreamPlayer" parent="popupBox"]
 stream = ExtResource( 4 )
-volume_db = -17.846
-bus = "SE"
+volume_db = -15.0
 
-[node name="enterSound" type="AudioStreamPlayer2D" parent="popupBox"]
+[node name="enterSound" type="AudioStreamPlayer" parent="popupBox"]
 stream = ExtResource( 3 )
-volume_db = -12.923
-bus = "SE"
+volume_db = -12.0
+
+[node name="speakerPortrait" type="Sprite" parent="popupBox"]
+position = Vector2( 104, 85 )

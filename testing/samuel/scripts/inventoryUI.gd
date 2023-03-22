@@ -1,18 +1,27 @@
 extends Control
 
-var hehe
+var template_inv_slot = load("res://testing/samuel/InventorySlot.tscn")
 
-func _on_MenuButton_pressed():
-	hehe = get_node("/root/testingSamuel/Root/tdPlayer/Hand/Inventory").get_inventory()
-	
-	#print(hehe)
-	#get_tree().paused = true
-	pass 
+onready var gridcontainer = $Background/M/V/ScrollContainer/GridContainer
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	pass
+		
+func update_inventory(inv):
+	var inventoryArray= inv.get_inventory()
+	if inventoryArray == null:
+		return
+	# If inventory Array[i] isnt null, add a box. However it seems the array is always null
+	for i in range(inventoryArray.size()):
+		# if the array index is not null, add box
+		if inventoryArray[i] != null:
+			var inv_slot_new = template_inv_slot.instance()
+			var itemName = inv.get_current_item()
+			var iconTexture = load ("res://testing/samuel/assets/redlineSprite.png")
+			inv_slot_new.get_node("Icon").set_texture(iconTexture)
+			gridcontainer.add_child(inv_slot_new, true)
+		# If it is, remove box
+		else:
+			if gridcontainer.get_child_count() > 0:
+				gridcontainer.remove_child(gridcontainer.get_child(i))

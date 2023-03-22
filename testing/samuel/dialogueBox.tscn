@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://testing/samuel/scripts/dialogueBox.gd" type="Script" id=1]
-[ext_resource path="res://testing/samuel/assets/tempSprite.png" type="Texture" id=2]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://testing/samuel/assets/fullBeepSound.mp3" type="AudioStream" id=4]
 [ext_resource path="res://testing/samuel/assets/beepSoundShort.mp3" type="AudioStream" id=5]
@@ -67,15 +66,15 @@ text = "text"
 [node name="textShowTimer" type="Timer" parent="dialogue"]
 
 [node name="speakerPortrait" type="Sprite" parent="dialogue"]
-visible = false
 position = Vector2( 100, -100 )
 scale = Vector2( 0.47777, 0.525491 )
-texture = ExtResource( 2 )
 
-[node name="textSound" type="AudioStreamPlayer2D" parent="dialogue"]
+[node name="textSound" type="AudioStreamPlayer" parent="dialogue"]
 stream = ExtResource( 5 )
-volume_db = -19.077
+volume_db = -19.7
+bus = "SE"
 
-[node name="enterSound" type="AudioStreamPlayer2D" parent="dialogue"]
+[node name="enterSound" type="AudioStreamPlayer" parent="dialogue"]
 stream = ExtResource( 4 )
-volume_db = -16.773
+volume_db = -16.426
+bus = "SE"

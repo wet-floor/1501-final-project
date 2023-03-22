@@ -45,6 +45,7 @@ margin_left = 1.0
 margin_top = 114.0
 margin_right = 97.0
 margin_bottom = 158.0
+focus_mode = 0
 text = "-5 health"
 
 [node name="increaseHealth5" type="Button" parent="."]
@@ -52,6 +53,7 @@ margin_left = 325.0
 margin_top = 114.0
 margin_right = 425.0
 margin_bottom = 160.0
+focus_mode = 0
 text = "+5 health"
 
 [connection signal="pressed" from="decreaseHealth5" to="." method="_on_decreaseHealth5_pressed"]
