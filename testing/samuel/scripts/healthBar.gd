@@ -10,6 +10,7 @@ func _show_bar():
 
 func _hide_bar():
 	hide()
+
 #func _process(delta):
 
 func _on_decreaseHealth5_pressed():
@@ -17,3 +18,6 @@ func _on_decreaseHealth5_pressed():
 
 func _on_increaseHealth5_pressed():
 	value += 5
+
+func _on_RigidBody2D_apply_damage(damage) -> void:
+	value -= damage

@@ -8,7 +8,7 @@ export (bool) var harmful = false
 export (float) var gravity = 0
 export (float) var object_weight = 1
 
-export (int) var damage = 0
+export (int) var damage = 1
 
 export (Vector2) var velocity = Vector2(0, 1)
 
@@ -47,8 +47,8 @@ func player_state(state) -> void:
 	set_linear_velocity((velocity * gravity) / object_weight)
 	
 	if breakable == true and harmful == true:
-		queue_free()
 		emit_signal("apply_damage", damage)
+		queue_free()
 		# connect signal to health bar
 
 func _on_object_body_entered(area : Node) -> void:
