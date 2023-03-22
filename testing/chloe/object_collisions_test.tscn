@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://testing/hendry/tdPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://testing/chloe/collidable_tile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://testing/chloe/uncollidable_tile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://testing/chloe/bound_room.tscn" type="PackedScene" id=4]
 [ext_resource path="res://testing/chloe/object.tscn" type="PackedScene" id=5]
-[ext_resource path="res://testing/samuel/healthBar.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,6 +21,4 @@ position = Vector2( 363, 313 )
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 5 )]
 position = Vector2( 488, 272 )
-breakable = true
-
-[node name="healthBar" parent="." instance=ExtResource( 6 )]
+collision_mask = 1

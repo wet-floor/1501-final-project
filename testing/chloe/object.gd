@@ -8,6 +8,8 @@ export (bool) var harmful = false
 export (float) var gravity = 0
 export (float) var object_weight = 1
 
+export (int) var damage = 0
+
 export (Vector2) var velocity = Vector2(0, 1)
 
 enum {
@@ -19,7 +21,7 @@ enum {
 var current_state = FREE
 
 func _ready():
-	pass
+	connect("body_entered", self, "_on_object_body_entered")
 
 func _integrate_forces(state) -> void:
 	set_angular_velocity(0)
@@ -33,17 +35,23 @@ func _integrate_forces(state) -> void:
 			player_state(state)
 
 func boundary_state(state) -> void:
-	# if breakable: queue free
-	pass
+	if breakable == true:
+		queue_free()
 
 func free_state(state) -> void:
 	set_linear_velocity((velocity * gravity) / object_weight)
 
 func player_state(state) -> void:
-	pass
-	# if harmful and breakable: queue free, apply damage
-	# elif harmful: apply damage
-	# elif breakable: queue free
-	# else: gain player velocity for singular instant
+	if breakable == true and harmful == true:
+		queue_free()
+		emit_signal("apply_damage", damage)
+		# connect signal to health bar
+	else:
+		# change velocity based on player
+		pass
 
-# set state based on object entered
+func _on_object_body_entered(area : Node) -> void:
+	if area.get_name() == "KinematicBody2D":
+		current_state = PLAYER
+	elif area.get_name() == "TileMap":
+		current_state = BOUNDARY
