@@ -35,6 +35,8 @@ func _integrate_forces(state) -> void:
 			player_state(state)
 
 func boundary_state(state) -> void:
+	set_linear_velocity((velocity * gravity) / object_weight)
+	
 	if breakable == true:
 		queue_free()
 
@@ -42,16 +44,17 @@ func free_state(state) -> void:
 	set_linear_velocity((velocity * gravity) / object_weight)
 
 func player_state(state) -> void:
+	set_linear_velocity((velocity * gravity) / object_weight)
+	
 	if breakable == true and harmful == true:
 		queue_free()
 		emit_signal("apply_damage", damage)
 		# connect signal to health bar
-	else:
-		# change velocity based on player
-		pass
 
 func _on_object_body_entered(area : Node) -> void:
 	if area.get_name() == "KinematicBody2D":
 		current_state = PLAYER
 	elif area.get_name() == "TileMap":
 		current_state = BOUNDARY
+	else:
+		current_state = FREE

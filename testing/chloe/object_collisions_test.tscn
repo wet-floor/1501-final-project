@@ -19,6 +19,6 @@ tile_data = PoolIntArray( 458781, 0, 0, 524317, 0, 0, 589853, 0, 0, 655389, 0, 0
 [node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 363, 313 )
 
-[node name="RigidBody2D" parent="." instance=ExtResource( 5 )]
+[node name="RigidBody2D" parent="." groups=["object"] instance=ExtResource( 5 )]
 position = Vector2( 488, 272 )
 collision_mask = 1
