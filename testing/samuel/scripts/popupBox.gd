@@ -1,4 +1,4 @@
-extends ColorRect
+extends Panel
 
 # The smaller this value is, the faster text goes
 export(float) var textSpeed = 0.07
@@ -42,13 +42,10 @@ func showText(name, text):
 	$speakerDialog.bbcode_text = text
 	$speakerDialog.visible_characters = 0
 	
-	#Unimplemented portrait feature
-	#var f = File.new()
-	#var img = dialog[phraseNum]["Name"] + dialog[phraseNum]["Emotion"]
-	#if f.file_exists(img):
-		#$speakerPortrait.texture = load(img)
-	#else:
-		#$speakerPortrait.texture = null
+	if name != null:
+		$speakerPortrait.texture = load("res://testing/samuel/assets/" + str(name) + ".jpg")
+	else:
+		$speakerPortrait.texture = null
 
 	# While the visible characters is shorter than the length of the text, continuously show the
 	# next character
