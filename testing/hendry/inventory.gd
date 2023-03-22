@@ -38,8 +38,13 @@ func get_current_item():
 	return inventory[currently_selected]
 
 
+# get the inventory list
 func get_inventory():
 	return inventory
+
+
+func get_currently_selected_index():
+	return currently_selected
 
 
 func release_item():

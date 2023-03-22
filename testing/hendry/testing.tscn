@@ -20,7 +20,7 @@ extents = Vector2( 44, 44 )
 [node name="tdPlayer" parent="." instance=ExtResource( 1 )]
 position = Vector2( 141, 153 )
 suck_power = 30
-shoot_strength = 5000
+shoot_strength = 2000
 charge_rate = 3.0
 
 [node name="RigidBody2D" parent="." groups=["object"] instance=ExtResource( 5 )]

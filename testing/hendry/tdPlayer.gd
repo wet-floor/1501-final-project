@@ -117,9 +117,10 @@ func shoot():
 		shoot_impulse = shoot_impulse * shoot_strength * charge_power 
 		
 		inventory.release_item()
-		released_object.apply_central_impulse(shoot_impulse/2)
+		released_object.apply_central_impulse(shoot_impulse)
 		
 		charge_power = 0  # reset the charge power back to 0 after shooting
+		print(inventory.get_inventory())
 
 
 func object_follow(delta):
@@ -128,6 +129,14 @@ func object_follow(delta):
 			var body : RigidBody2D = item
 			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 40)
 			body.global_rotation = inventory.global_rotation
+
+
+func get_inventory():
+	return inventory.get_inventory()
+
+
+func get_currently_selected_index():
+	return inventory.get_currently_selected_index()
 
 
 ## PROCESSING
@@ -154,16 +163,14 @@ func _process(delta):
 func _on_Direct_Range_body_entered(body):
 	if body.is_in_group("object"):
 		direct_range_objects.append(body)
-	print(direct_range_objects)
 
 
 func _on_Direct_Range_body_exited(body):
 	if body.is_in_group("object"):
 		direct_range_objects.erase(body)
-	print(direct_range_objects)
 
 
 func _on_Inventory_body_entered(body):
 	if sucking and inventory.get_current_item() == null:
 		inventory.add_item(body)
-		print("added", body)
+		print(inventory.get_inventory())
