@@ -7,7 +7,7 @@ var popupBox
 var textText
 var nameText
 
-#onready var inventory = $inventory
+onready var player = $tdPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,14 +25,17 @@ func _on_Button_pressed():
 	popupBox.showText(playerName, playerText)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#pass
+func _process(delta):
+	#$inventoryUI.update_inventory(player)
+	pass
 
 func _on_Timer_timeout():
-	#$inventoryUI.update_inventory(inventory)
-	#var inventoryArray = inventory.get_inventory() as Array
+	print("player inventory: " + str($inventoryUI.update_inventory(player)))
+	$inventoryUI.update_inventory(player)
+	var inventoryArray = player.get_inventory() as Array
+	print("gridcont children count: " + str($inventoryUI/Background/M/V/ScrollContainer/GridContainer.get_child_count()))
 	#print(inventoryArray[0])
-	#print(inventory.get_inventory())
-	$inventoryUI.testing()
+	#print(player.get_inventory())
+	#$inventoryUI.testing()
 	pass
 	
