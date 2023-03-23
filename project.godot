@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="1501 Final Project"
-run/main_scene="res://testing/samuel/testingScene.tscn"
+run/main_scene="res://testing/testing1.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
