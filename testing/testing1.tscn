@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://testing/hendry/testObject2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://testing/hendry/tdPlayer.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://testing/chloe/collidable_tile.tscn" type="PackedScene" id=11]
 [ext_resource path="res://testing/chloe/uncollidable_tile.tscn" type="PackedScene" id=12]
 [ext_resource path="res://testing/chloe/bound_room.tscn" type="PackedScene" id=13]
+[ext_resource path="res://testing/chloe/object.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 643, 33 )
@@ -149,3 +150,9 @@ margin_right = 37.0
 margin_bottom = 26.0
 
 [node name="pauseMenu" parent="." instance=ExtResource( 4 )]
+
+[node name="RigidBody2D4" parent="." instance=ExtResource( 14 )]
+position = Vector2( 208, 298 )
+collision_mask = 1
+linear_damp = 3.0
+angular_damp = 1.0
