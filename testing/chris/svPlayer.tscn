@@ -31,14 +31,15 @@ vframes = 4
 position = Vector2( 39, 21 )
 shape = SubResource( 2 )
 
-[node name="Inventory" parent="Hand/Arm" instance=ExtResource( 3 )]
-position = Vector2( 21, 0 )
+[node name="Inventory" parent="Hand" instance=ExtResource( 3 )]
+position = Vector2( 60, 21 )
 
-[node name="Range" type="Area2D" parent="Hand/Arm"]
+[node name="Range" type="Area2D" parent="Hand"]
+position = Vector2( 39, 21 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Arm/Range"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Range"]
 polygon = PoolVector2Array( 30, 0, 30, -10, 500, -200, 550, -60, 550, 60, 500, 200, 30, 10 )
 
-[connection signal="body_entered" from="Hand/Arm/Inventory" to="." method="_on_Inventory_body_entered"]
-[connection signal="body_entered" from="Hand/Arm/Range" to="." method="_on_Range_body_entered"]
-[connection signal="body_exited" from="Hand/Arm/Range" to="." method="_on_Range_body_exited"]
+[connection signal="body_entered" from="Hand/Inventory" to="." method="_on_Inventory_body_entered"]
+[connection signal="body_entered" from="Hand/Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Hand/Range" to="." method="_on_Range_body_exited"]
