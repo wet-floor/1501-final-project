@@ -49,7 +49,6 @@ func player_state(state) -> void:
 	if breakable == true and harmful == true:
 		emit_signal("apply_damage", damage)
 		queue_free()
-		# connect signal to health bar
 
 func _on_object_body_entered(area : Node) -> void:
 	if area.get_name() == "KinematicBody2D":

@@ -174,3 +174,7 @@ func _on_Inventory_body_entered(body):
 	if sucking and inventory.get_current_item() == null:
 		inventory.add_item(body)
 		print(inventory.get_inventory())
+
+
+func _on_RigidBody2D4_body_entered(body):
+	print("please work")
