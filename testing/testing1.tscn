@@ -39,7 +39,6 @@ tile_data = PoolIntArray( 458781, 0, 0, 524317, 0, 0, 589853, 0, 0, 655389, 0, 0
 [node name="Area2D" parent="." instance=ExtResource( 13 )]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2( 633, 23 )
 shape = SubResource( 4 )
 
