@@ -5,10 +5,12 @@
 [sub_resource type="GDScript" id=2]
 script/source = "extends Area2D
 
+export (bool) var locked = false
+
 func _ready():
 	connect(\"body_entered\", self, \"_on_object_body_entered\")
 
-func _set_teleport_location():
+func _teleport():
 	if get_parent().name == \"ROOM 01\":
 		if self.get_name() == \"TELEPORTER\":
 			get_tree().change_scene(\"res://testing/chloe/l4.1/ROOM 04.tscn\")
@@ -23,7 +25,10 @@ func _set_teleport_location():
 		if self.get_name() == \"TELEPORTER4\":
 			get_tree().change_scene(\"res://testing/chloe/l4.1/ROOM 02.tscn\")
 		if self.get_name() == \"TELEPORTER5\":
-			pass
+			if locked == true:
+				pass
+			else:
+				pass
 	elif get_parent().name == \"ROOM 04\":
 		if self.get_name() == \"TELEPORTER6\":
 			get_tree().change_scene(\"res://testing/chloe/l4.1/ROOM 03.tscn\")
@@ -32,19 +37,19 @@ func _set_teleport_location():
 
 func _on_object_body_entered(area: Node) -> void:
 	if area.get_name() == \"KinematicBody2D\":
-		_set_teleport_location()
+		_teleport()
 "
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[node name="Area2D" type="Area2D"]
+[node name="TELEPORTER" type="Area2D"]
 script = SubResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="temporary_icon" type="Sprite" parent="."]
 scale = Vector2( 4, 12 )
 texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="collision_shape2d" type="CollisionShape2D" parent="."]
 scale = Vector2( 2, 6 )
 shape = SubResource( 1 )
