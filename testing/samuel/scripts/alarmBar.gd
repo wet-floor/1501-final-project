@@ -45,11 +45,11 @@ func _on_awakenessTimer_timeout():
 		print("win")
 		pass
 	# Print testing (delete when finished)
-	print("percent: " + str(percent));
-	print("completion: " + str(completion));
-	print("max unit offset: " + str($minMaxPath/maxAwakeness.unit_offset))
-	print("max percent: " + str(max_percent))
-	print("")
+	#print("percent: " + str(percent));
+	#print("completion: " + str(completion));
+	#print("max unit offset: " + str($minMaxPath/maxAwakeness.unit_offset))
+	#print("max percent: " + str(max_percent))
+	#print("")
 
 func stage1():
 	min_percent = 20
@@ -76,5 +76,7 @@ func stage3():
 	pass
 
 func _process(delta):
-	value = percent;
+	value = percent
 
+func _on_note_touched():
+	percent += 5

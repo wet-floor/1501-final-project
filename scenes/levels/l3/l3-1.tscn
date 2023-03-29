@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/levels/l3/l3-1.gd" type="Script" id=2]
+[ext_resource path="res://testing/samuel/level3/level3.tscn" type="PackedScene" id=3]
+[ext_resource path="res://testing/hendry/tdPlayer.tscn" type="PackedScene" id=4]
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="tdPlayer" parent="." instance=ExtResource( 4 )]
+
+[node name="level3" parent="." instance=ExtResource( 3 )]
