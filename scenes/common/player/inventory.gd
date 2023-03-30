@@ -49,8 +49,12 @@ func get_currently_selected_index():
 
 func release_item():
 	if inventory[currently_selected] != null:
-		# var released_item : RigidBody2D 
-		# released_item = inventory[currently_selected]
+		
+		var released_item : RigidBody2D 
+		released_item = inventory[currently_selected]
+		released_item.collision_layer = 1
+		released_item.collision_mask = 1
+		
 		# released_item.set_physics_process(true)
 		inventory.pop_at(currently_selected)
 		
@@ -85,8 +89,8 @@ func _physics_process(delta):
 	if inventory[currently_selected] != null:
 		var n : RigidBody2D = inventory[currently_selected]
 		n.show()
-		n.collision_layer = 1
-		n.collision_mask = 1
+		n.collision_layer = 2
+		n.collision_mask = 2
 	
 		# TODO: some inventory items don't get displayed and instead has many items within it
 		#if inventory[currently_selected].body_is_in_group("stackable"):

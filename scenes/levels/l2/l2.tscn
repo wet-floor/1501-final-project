@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://testing/hendry/tdPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/levels/l2/l2.gd" type="Script" id=2]
+[ext_resource path="res://scenes/levels/l2/Joggers.tscn" type="PackedScene" id=3]
+[ext_resource path="res://testing/chris/grassbackghround.jpg" type="Texture" id=4]
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -628, -11, 0, 0, 0, 0, 631, -9, 0, 0, 0, 0, 631, 9, 0, 0, 0, 0, -629, 9, 0, 0, 0, 0, -628, -11 )
+}
+
+[node name="RootNode" type="Node"]
+script = ExtResource( 2 )
+joggers_scene = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1277.0
+margin_bottom = 716.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( 642, 669 )
+
+[node name="SpawnPath" type="Path2D" parent="SpawnPoint"]
+position = Vector2( -3, 34 )
+curve = SubResource( 2 )
+
+[node name="SpawnPathFollow" type="PathFollow2D" parent="SpawnPoint/SpawnPath"]
+position = Vector2( -628, -11 )
+rotation = 0.00158886
+
+[node name="SpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="tdPlayer" parent="." instance=ExtResource( 1 )]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
