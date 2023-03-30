@@ -70,7 +70,7 @@ func control():
 	
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
-		if collision.collider.is_in_group("object"):
+		if collision.collider.is_in_group("body"):
 			collision.collider.apply_central_impulse(-collision.normal * inertia)
 	
 	pass
@@ -97,6 +97,10 @@ func suck():
 		for body in direct_range_objects:
 			var suck_impulse = (inventory.global_position - body.global_position).normalized() * suck_power
 			body.apply_central_impulse(suck_impulse)
+			
+			if body.is_in_group("container"):
+				# print("requesting", body, "to eject")
+				body.eject()
 	else:
 		sucking = false
 
@@ -119,7 +123,7 @@ func shoot():
 			charge_power = default_charge_power
 	
 	
-		var released_object : RigidBody2D = inventory.get_current_item()
+		released_object = inventory.get_current_item()
 		
 		print(charge_power)
 		var shoot_impulse = (get_global_mouse_position() - inventory.global_position).normalized()
@@ -170,16 +174,17 @@ func _process(delta):
 
 ## SIGNALS
 func _on_Direct_Range_body_entered(body):
-	if body.is_in_group("object"):
+	if body.is_in_group("body"):
 		direct_range_objects.append(body)
 
 
 func _on_Direct_Range_body_exited(body):
-	if body.is_in_group("object"):
+	if body.is_in_group("body"):
 		direct_range_objects.erase(body)
 
 
 func _on_Inventory_body_entered(body):
 	if sucking and inventory.get_current_item() == null:
-		inventory.add_item(body)
-		print(inventory.get_inventory())
+		if body.is_in_group("object"):
+			inventory.add_item(body)
+			print(inventory.get_inventory())
