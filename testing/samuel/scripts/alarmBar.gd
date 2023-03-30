@@ -1,8 +1,8 @@
 extends ProgressBar
 # Default starting percent
-var percent = 100;
+var percent = 0;
 # Minimum percent, need to be higher than this
-var min_percent = 0;
+var min_percent = 5;
 # Max percent, need to be under this
 var max_percent = 70;
 var completion = 0;
@@ -14,7 +14,7 @@ var stage3Complete = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	value = percent;
-	$minMaxPath/minAwakeness.unit_offset = (0);
+	$minMaxPath/minAwakeness.unit_offset = (0.05);
 	$minMaxPath/maxAwakeness.unit_offset = (0.7);
 	$awakenessTimer.start();
 	# hide();
@@ -23,7 +23,7 @@ func _show_bar():
 	show();
 
 func _on_awakenessTimer_timeout():
-	# Minus 1 percent every 1/5 of a second (timer timeout)
+	# Minus 1 percent every 1/2 of a second (timer timeout)
 	if percent > 0:
 		percent -= 1;
 		
@@ -80,3 +80,6 @@ func _process(delta):
 
 func _on_note_touched():
 	percent += 5
+
+func getCompletion():
+	return completion

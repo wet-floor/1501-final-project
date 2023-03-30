@@ -18,9 +18,13 @@ func _on_spawnTimer_timeout():
 
 	direction += rand_range(-PI / 8, PI / 8)
 	
-	var velocity = Vector2(300, 0)
+	var velocity = Vector2(350, 0)
 	
 	note.linear_velocity = velocity.rotated(direction)
 	
 	var alarmBar = get_node("alarmBar")
 	note.connect("noteTouched", alarmBar, "_on_note_touched")
+
+func _process(delta):
+	$completionBar.value = $alarmBar.getCompletion()
+	$completionBar/Label.text = str($completionBar.value) + "%"

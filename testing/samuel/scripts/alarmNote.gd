@@ -14,5 +14,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_RigidBody2D_body_entered(body):
 	emit_signal("noteTouched")
-	print("Note was touched (alarmNote)")
+
 	queue_free()
