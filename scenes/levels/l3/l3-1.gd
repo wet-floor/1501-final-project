@@ -7,7 +7,8 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#$alarmBar/Path2D/spawnTimer.start()
-	$level3/spawnTimer.start()
+	pass
+	#$level3/spawnTimer.start()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

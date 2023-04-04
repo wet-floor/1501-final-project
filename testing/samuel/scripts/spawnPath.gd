@@ -25,6 +25,6 @@ func _on_spawnTimer_timeout():
 	var alarmBar = get_node("alarmBar")
 	note.connect("noteTouched", alarmBar, "_on_note_touched")
 
-func _process(delta):
+func _process(_delta):
 	$completionBar.value = $alarmBar.getCompletion()
 	$completionBar/Label.text = str($completionBar.value) + "%"

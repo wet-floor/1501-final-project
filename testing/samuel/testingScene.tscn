@@ -72,9 +72,9 @@ margin_bottom = 26.0
 
 [node name="pauseMenu" parent="." instance=ExtResource( 8 )]
 
-[node name="RigidBody2D" parent="." groups=["object"] instance=ExtResource( 4 )]
+[node name="redlineSprite" parent="." groups=["object"] instance=ExtResource( 4 )]
 
-[node name="RigidBody2D2" parent="." groups=["object"] instance=ExtResource( 5 )]
+[node name="1" parent="." groups=["object"] instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="showTextButton" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -32,10 +32,7 @@ func _process(delta):
 func _on_Timer_timeout():
 	print("player inventory: " + str($inventoryUI.update_inventory(player)))
 	$inventoryUI.update_inventory(player)
-	var inventoryArray = player.get_inventory() as Array
+	print("num non null items: " + str($inventoryUI.getNonNull()))
+	print("gridcontent: " + str($inventoryUI/Background/M/V/ScrollContainer/GridContainer))
 	print("gridcont children count: " + str($inventoryUI/Background/M/V/ScrollContainer/GridContainer.get_child_count()))
-	#print(inventoryArray[0])
-	#print(player.get_inventory())
-	#$inventoryUI.testing()
-	pass
 	
