@@ -802,10 +802,9 @@ position = Vector2( 480, 352 )
 
 [node name="Laundry Basket" parent="." groups=["body", "container"] instance=ExtResource( 6 )]
 position = Vector2( 736, 352 )
+storage = 4
 ejected_object = ExtResource( 3 )
-
-[node name="Pants" parent="." groups=["body", "object"] instance=ExtResource( 3 )]
-position = Vector2( 416, 480 )
+ejected_object_group = "pants"
 
 [node name="Washing Machine Input" type="Area2D" parent="."]
 position = Vector2( 640, 288 )

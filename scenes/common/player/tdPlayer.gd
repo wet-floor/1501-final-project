@@ -99,8 +99,7 @@ func suck():
 			body.apply_central_impulse(suck_impulse)
 			
 			if body.is_in_group("container"):
-				# print("requesting", body, "to eject")
-				body.eject()
+				body.eject(global_position)
 	else:
 		sucking = false
 
