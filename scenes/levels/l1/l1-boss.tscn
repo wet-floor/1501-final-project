@@ -975,7 +975,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.9 ),
+"times": PoolRealArray( 0.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1017,6 +1017,7 @@ collision_layer = 9
 collision_mask = 9
 speed = 900
 jump_speed = -1400
+gravity = 5000
 friction = 0.393
 suck_power = 80
 shoot_strength = 2000
@@ -1076,6 +1077,7 @@ curve = SubResource( 43 )
 position = Vector2( 96, 256 )
 
 [node name="ItemDropPath" type="Path2D" parent="."]
+position = Vector2( 0, -17 )
 curve = SubResource( 44 )
 
 [node name="ItemSpawnLocation" type="PathFollow2D" parent="ItemDropPath"]

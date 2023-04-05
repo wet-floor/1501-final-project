@@ -82,7 +82,7 @@ func _physics_process(delta):
 
 
 func _on_Damage_body_entered(body):
-	if body == player:
+	if body == player and boss.get_state() != boss.States.START:
 		if regret_bar - washing_machine_damage <= 0:
 			get_tree().reload_current_scene()
 			return

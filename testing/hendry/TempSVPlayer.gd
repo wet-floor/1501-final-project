@@ -53,10 +53,10 @@ func check_jump():
 	
 	#Jump Physics
 	if velocity.y > 0: #Player is falling
-		velocity += Vector2.UP * (-2.81) * (1) #Falling action is faster than jumping action | Like in mario
+		velocity += Vector2.UP * (-2.81) * (4) #Falling action is faster than jumping action | Like in mario
 		
 	elif velocity.y < 0 && jump_stop: #Player is jumping 
-		velocity += Vector2.UP * (-9.81) * (100) #Jump Height depends on how long you will hold key
+		velocity += Vector2.UP * (-9.81) * (80) #Jump Height depends on how long you will hold key
 		
 	if is_on_floor():
 		if jump_just_pressed: 
