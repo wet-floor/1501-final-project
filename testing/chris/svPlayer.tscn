@@ -19,13 +19,18 @@ script = ExtResource( 1 )
 position = Vector2( 1, 7 )
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Char" type="Sprite" parent="."]
 position = Vector2( 2, -3 )
 texture = ExtResource( 2 )
 hframes = 4
 vframes = 4
 
 [node name="Hand" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Hand"]
+position = Vector2( 53, 25 )
+scale = Vector2( 0.135593, 0.029661 )
+texture = ExtResource( 2 )
 
 [node name="Arm" type="CollisionShape2D" parent="Hand"]
 position = Vector2( 39, 21 )
