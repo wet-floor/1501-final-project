@@ -15,6 +15,10 @@ run/main_scene="res://testing/testing1.tscn"
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
+[autoload]
+
+Coordinates="*res://scenes/levels/l4/l4.1/coordinates.gd"
+
 [display]
 
 window/size/width=1280
