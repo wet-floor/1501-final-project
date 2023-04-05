@@ -14,7 +14,6 @@ extents = Vector2( 11.5, 10 )
 [node name="svPlayer" type="KinematicBody2D"]
 position = Vector2( 641, 460 )
 script = ExtResource( 1 )
-jumpHeight = 300
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 7 )
@@ -45,6 +44,11 @@ position = Vector2( 39, 21 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hand/Range"]
 polygon = PoolVector2Array( 30, 0, 30, -10, 500, -200, 550, -60, 550, 60, 500, 200, 30, 10 )
+
+[node name="Sprite" type="Sprite" parent="Hand/Range"]
+position = Vector2( 313.5, -21.5 )
+scale = Vector2( 2.32627, 0.908898 )
+texture = ExtResource( 2 )
 
 [connection signal="body_entered" from="Hand/Inventory" to="." method="_on_Inventory_body_entered"]
 [connection signal="body_entered" from="Hand/Range" to="." method="_on_Range_body_entered"]

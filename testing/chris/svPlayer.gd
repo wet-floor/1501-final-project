@@ -12,7 +12,7 @@ var motion = Vector2.ZERO
 
 onready var hand = get_node("Hand")
 onready var inventory = get_node("Hand/Inventory")
-onready var arm = get_node("Hand/Range/CollisionPolygon2D")
+onready var arm = get_node("Hand/Range")
 onready var charSprite = $Char
 
 var direct_range_objects = []
@@ -62,7 +62,7 @@ func get_input():
 	#mouse lookie wookie
 	mouse = get_global_mouse_position()
 	hand.look_at(mouse)
-	arm.rotation = hand.rotation
+	arm.look_at(mouse)
 	
 	#character flippy wippy
 	if mouse.x < position.x:
