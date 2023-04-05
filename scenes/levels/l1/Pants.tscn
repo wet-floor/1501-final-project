@@ -12,8 +12,8 @@ extents = Vector2( 20.8862, 26.4924 )
 
 [node name="RigidBody2D" type="RigidBody2D"]
 physics_material_override = SubResource( 2 )
-linear_damp = 8.0
-angular_damp = 9.0
+linear_damp = 1.4
+angular_damp = 3.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.8, 0.9 )

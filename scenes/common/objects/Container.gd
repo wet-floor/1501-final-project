@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 export (int) var storage = 3
-export(PackedScene) var ejected_object
+export (PackedScene) var ejected_object
 
 export var ejected_min = 1
 export var ejected_max = 1
@@ -10,15 +10,11 @@ export var ready = true
 
 export var ejected_object_group = ""
 
-# var rng = RandomNumberGenerator.new()
 
 onready var path : Path2D = get_node("SpawnPath")
 onready var spawn_location : PathFollow2D  = get_node("SpawnPath/SpawnLocation")
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+signal eject
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,6 +36,7 @@ func eject(player_position):
 		
 		storage -= 1
 		ready = false
+		emit_signal("eject")
 
 func get_storage():
 	return storage

@@ -78,7 +78,8 @@ func _process(	delta):
 	value = percent
 
 func _on_note_touched():
-	percent += 5
+	#percent += 5
+	pass
 
 func getCompletion():
 	return completion
