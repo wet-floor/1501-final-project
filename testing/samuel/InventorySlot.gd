@@ -15,8 +15,6 @@ func _ready():
 		var targetH = 10
 		var targetW = 10
 	
-		print(icon_size.x)
-		print(icon_size.y)
 		var scale = Vector2((icon_size.x/(icon_size.x/targetW))/100, (icon_size.y/(icon_size.y/targetH))/100)
 		$Icon/Sprite.texture = icon_texture
 		$Icon/Sprite.scale = scale
@@ -35,8 +33,10 @@ func setName(name):
 	
 	for i in item_name_array:
 		emptyString += String(i)
-		
-	item_name = emptyString
+	
+	# Removes all numbers and symbols from end of item name
+	item_name = emptyString.rstrip("{}|[]:<>?,./-=_+`~!@#$%^&*()1234567890")
+	item_name = item_name.lstrip("{}|[]:<>?,./-=_+`~!@#$%^&*()1234567890")
 	
 	icon_texture = load("res://testing/samuel/assets/" + str(item_name) + ".png")
 	
@@ -44,9 +44,7 @@ func setName(name):
 		icon_size = icon_texture.get_size()
 		var targetH = 10
 		var targetW = 10
-	
-		print(icon_size.x)
-		print(icon_size.y)
+
 		var scale = Vector2((icon_size.x/(icon_size.x/targetW))/100, (icon_size.y/(icon_size.y/targetH))/100)
 		$Icon/Sprite.texture = icon_texture
 		$Icon/Sprite.scale = scale
