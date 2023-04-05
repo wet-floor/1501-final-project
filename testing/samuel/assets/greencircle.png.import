@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/[color=red][center]Washing Machine.jpg-4d8a03a565b06e94b95005c115075f8d.stex"
+path="res://.import/greencircle.png-484c5487e130bdcde9ef4d849b5d854f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testing/samuel/assets/[color=red][center]Washing Machine.jpg"
-dest_files=[ "res://.import/[color=red][center]Washing Machine.jpg-4d8a03a565b06e94b95005c115075f8d.stex" ]
+source_file="res://testing/samuel/assets/greencircle.png"
+dest_files=[ "res://.import/greencircle.png-484c5487e130bdcde9ef4d849b5d854f.stex" ]
 
 [params]
 

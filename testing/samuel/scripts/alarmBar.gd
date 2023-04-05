@@ -1,8 +1,8 @@
 extends ProgressBar
 # Default starting percent
-var percent = 100;
+var percent = 0;
 # Minimum percent, need to be higher than this
-var min_percent = 0;
+var min_percent = 5;
 # Max percent, need to be under this
 var max_percent = 70;
 var completion = 0;
@@ -14,22 +14,19 @@ var stage3Complete = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	value = percent;
-	$minMaxPath/minAwakeness.unit_offset = (0);
+	$minMaxPath/minAwakeness.unit_offset = (0.05);
 	$minMaxPath/maxAwakeness.unit_offset = (0.7);
 	$awakenessTimer.start();
+	$completionTimer.start();
 	# hide();
 	
 func _show_bar():
 	show();
 
-func _on_awakenessTimer_timeout():
-	# Minus 1 percent every 1/5 of a second (timer timeout)
-	if percent > 0:
-		percent -= 1;
-		
+func _on_completionTimer_timeout():
 	# If the percent is in between max and min:
 	if (percent <= max_percent && percent >= min_percent):
-		completion += 2;
+		completion += 1;
 		if completion > 20 && completion < 60 && stage1Complete == false:
 			stage1();
 			stage1Complete = true;
@@ -51,13 +48,17 @@ func _on_awakenessTimer_timeout():
 	#print("max percent: " + str(max_percent))
 	#print("")
 
+func _on_awakenessTimer_timeout():
+	# Minus 1 percent every 1/2 of a second (timer timeout)
+	if percent > 0:
+		percent -= 1;
+		
 func stage1():
 	min_percent = 20
 	max_percent = 60
 	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.2);
 	$minMaxPath/maxAwakeness.unit_offset = (0.6);
-	pass
 	
 func stage2():
 	min_percent = 50
@@ -65,7 +66,6 @@ func stage2():
 	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.5);
 	$minMaxPath/maxAwakeness.unit_offset = (0.8);
-	pass
 	
 func stage3():
 	min_percent = 80
@@ -73,10 +73,13 @@ func stage3():
 	# Changes the markers
 	$minMaxPath/minAwakeness.unit_offset = (0.8);
 	$minMaxPath/maxAwakeness.unit_offset = (1);
-	pass
 
-func _process(delta):
+func _process(	delta):
 	value = percent
 
 func _on_note_touched():
-	percent += 5
+	#percent += 5
+	pass
+
+func getCompletion():
+	return completion
