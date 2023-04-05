@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
-
-export var speed = 500
-export var friction = 0.2
-export var acceleration = 0.4
+export (int) var speed = 1200
+export (int) var jump_speed = -1800
+export (int) var gravity = 4000
+export (float, 0, 1.0) var friction = 0.1
+export (float, 0, 1.0) var acceleration = 0.25
 export (int, 0, 200) var inertia = 100
-
-var input_dir = Vector2.ZERO
 
 onready var hand = get_node("Hand")
 onready var inventory = get_node("Hand/Inventory")
@@ -16,7 +15,7 @@ var direct_range_objects = []
 var charge_power = 0
 
 export var suck_power = 30
-export var shoot_strength = 2000
+export var shoot_strength = 1500
 
 var sucking = false
 
@@ -27,54 +26,50 @@ var released_object : RigidBody2D
 
 var screensize
 
+var velocity = Vector2.ZERO
+var mouse
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	screensize = get_viewport_rect().size
-
-## PLAYER MOVEMENT 
 func get_input():
-	input_dir = Vector2.ZERO
-
+	var dir = 0
 	if Input.is_action_pressed("player_right"):
-		input_dir.x += 1
-	
+		dir += 1
 	if Input.is_action_pressed("player_left"):
-		input_dir.x -= 1
+		dir -= 1
+	if dir != 0:
+		velocity.x = lerp(velocity.x, dir * speed, acceleration)
+	else:
+		velocity.x = lerp(velocity.x, 0, friction)
 	
-	if Input.is_action_pressed("player_up"):
-		input_dir.y -= 1
+	# aiming
+	mouse = get_global_mouse_position()
+	hand.look_at(mouse)
+	arm.rotation = hand.rotation
 
-	if Input.is_action_pressed("player_down"):
-		input_dir.y += 1 
+func _physics_process(delta):
+	get_input()
 	
-	input_dir = input_dir.normalized()
-
-# player move and look
-func control():
-	input_dir = move_and_slide(input_dir * speed, Vector2.ZERO, false, 10, PI/4, false)
+	# sucking and shooting
+	get_action(delta)
 	
-	var mouse = get_global_mouse_position()
+	screensize = get_viewport_rect().size
+	position.x = clamp(position.x, 0, screensize.x)
+	position.y = clamp(position.y, 0, screensize.y)
 	
-	# don't get the character confused with a close mouse distance
-	if mouse.distance_to(self.position) > 50:
-		look_at(get_global_mouse_position())
+	object_follow(delta)
 	
-	# point the hand towards the mouse
-	if mouse.distance_to(self.position) > 100:
-		var hand_to_mouse_distance = hand.global_position.distance_to(mouse)
-		var hand_to_body_distance = hand.global_position.distance_to(self.global_position)
-		var hand_rotation = asin(hand_to_body_distance / hand_to_mouse_distance)
-		hand.rotation = -hand_rotation
-		arm.rotation = hand.rotation
+	# movement
+	velocity.y += gravity * delta
+	velocity = move_and_slide(velocity, Vector2.UP, false, 10, PI/4, false)
+	if Input.is_action_just_pressed("player_jump"):
+		if is_on_floor():
+			velocity.y = jump_speed
 	
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.is_in_group("body"):
 			collision.collider.apply_central_impulse(-collision.normal * inertia)
 
-## PLAYER ACTIONS
-# get player input for sucking and shooting
+
 func get_action(delta):
 	if Input.is_action_pressed("player_suck"):
 		suck()
@@ -86,7 +81,7 @@ func get_action(delta):
 		
 	if Input.is_action_just_released("player_shoot"):
 		shoot()
-
+		
 
 func suck():
 	if inventory.get_current_item() == null:
@@ -105,7 +100,7 @@ func suck():
 func charge_shot(delta):
 	if inventory.get_current_item() != null:
 		charge_power += charge_rate * delta
-		charge_power = clamp(charge_power, 0, 2)
+		charge_power = clamp(charge_power, 0, 1)
 		
 	pass
 
@@ -137,9 +132,8 @@ func object_follow(delta):
 	for item in inventory.get_inventory():
 		if item != null:
 			var body : RigidBody2D = item
-			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 40)
+			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 80)
 			body.global_rotation = inventory.global_rotation
-
 
 func get_inventory():
 	return inventory.get_inventory()
@@ -148,26 +142,6 @@ func get_inventory():
 func get_currently_selected_index():
 	return inventory.get_currently_selected_index()
 
-
-## PROCESSING
-func _physics_process(delta):
-	
-	# movement and look
-	get_input()
-	control()
-	
-	# sucking and shooting
-	get_action(delta)
-	
-	screensize = get_viewport_rect().size
-	position.x = clamp(position.x, 0, screensize.x)
-	position.y = clamp(position.y, 0, screensize.y)
-	
-	object_follow(delta)
-
-
-func _process(delta):
-	pass
 
 ## SIGNALS
 func _on_Direct_Range_body_entered(body):
@@ -185,3 +159,4 @@ func _on_Inventory_body_entered(body):
 		if body.is_in_group("object"):
 			inventory.add_item(body)
 			print(inventory.get_inventory())
+	
