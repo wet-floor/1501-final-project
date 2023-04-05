@@ -8,6 +8,7 @@ var speakerName
 var shown = false
 var finished = false
 signal messageEnded
+var end_dialogue = false
 
 # Note: bold font currently has settings to be more spaced instead of bold, 
 # and code text is simply smaller text size. This can be checked in the 2D inspector for text.
@@ -64,7 +65,7 @@ func showText(name, text):
 func _process(_delta):
 	# If the player presses accept, it will either move onto the next phrase or
 	# skip to the end of current phrase if still not complete.
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") or end_dialogue:
 		if finished && shown:
 			$enterSound.play()
 			self.hide()

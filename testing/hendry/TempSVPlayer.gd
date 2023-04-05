@@ -140,6 +140,7 @@ func shoot():
 		
 		inventory.release_item()
 		released_object.apply_central_impulse(shoot_impulse)
+		released_object.add_to_group("launched")
 		
 		charge_power = 0  # reset the charge power back to 0 after shooting
 		print(inventory.get_inventory())
@@ -150,7 +151,7 @@ func object_follow(delta):
 		if item != null:
 			var body : RigidBody2D = item
 			lerp(body.global_position, inventory.global_position, 80)
-			# body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 80)
+			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 80)
 			body.global_rotation = inventory.global_rotation
 
 func get_inventory():
