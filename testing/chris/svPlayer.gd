@@ -7,6 +7,7 @@ export var gravity = 1000
 export var jumpHeight = 100
 export var jumpSpeed = 0
 export var numJumps = 0
+export var direction = "left"
 
 var input_dir = Vector2.ZERO
 
@@ -74,7 +75,10 @@ func get_action(delta):
 	
 	# don't get the character confused with a close mouse distance
 	if mouse.distance_to(self.position) > 50:
-		look_at(get_global_mouse_position())
+		if get_global_mouse_position().x >= (screensize.x/2):
+			face_right()
+		if get_global_mouse_position().x < (screensize.x/2):
+			face_left()
 	
 	# point the hand towards the mouse
 	if mouse.distance_to(self.position) > 100:
@@ -141,6 +145,15 @@ func object_follow(delta):
 			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 40)
 			body.global_rotation = inventory.global_rotation
 
+func face_left():
+	if direction == "right":
+		scale.x = -1
+		direction = "left"
+func face_right():
+	if direction == "left":
+		scale.x = -1
+		direction = "right"
+
 
 ## PROCESSING
 func _physics_process(delta):
@@ -151,7 +164,6 @@ func _physics_process(delta):
 	jumpSpeed += gravity * delta
 	if jumpSpeed > 750:
 		jumpSpeed = 0
-	print(jumpSpeed)
 	if jumpSpeed == 0:
 		numJumps = 0
 	
