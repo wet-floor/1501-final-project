@@ -1,6 +1,7 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://testing/hendry/TempSVPlayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/levels/l1/Boss.gd" type="Script" id=2]
 [ext_resource path="res://scenes/levels/l1/l1-boss.gd" type="Script" id=3]
 [ext_resource path="res://testing/assets/Room_Builder_free_32x32.png" type="Texture" id=4]
 
@@ -909,6 +910,12 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 40/shapes = [  ]
 40/z_index = 0
 
+[sub_resource type="RectangleShape2D" id=41]
+extents = Vector2( 85, 101 )
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 85, 101 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 384 )
 
@@ -918,11 +925,10 @@ extents = Vector2( 64, 384 )
 [sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 640, 32 )
 
-[sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 85, 101 )
-
-[sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 85, 101 )
+[sub_resource type="Curve2D" id=43]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 96, 256, 0, 0, 0, 0, 1184, 256 )
+}
 
 [node name="Node" type="Node"]
 script = ExtResource( 3 )
@@ -937,6 +943,9 @@ collision_layer = 19
 collision_mask = 19
 format = 1
 tile_data = PoolIntArray( 0, 39, 0, 1, 40, 0, 2, 40, 0, 3, 40, 0, 4, 40, 0, 5, 40, 0, 6, 40, 0, 7, 40, 0, 8, 40, 0, 9, 40, 0, 10, 40, 0, 11, 40, 0, 12, 40, 0, 13, 40, 0, 14, 40, 0, 15, 40, 0, 16, 40, 0, 17, 40, 0, 18, 40, 0, 19, 40, 0, 65536, 38, 0, 65537, 37, 0, 65538, 37, 0, 65539, 37, 0, 65540, 37, 0, 65541, 37, 0, 65542, 37, 0, 65543, 37, 0, 65544, 37, 0, 65545, 37, 0, 65546, 37, 0, 65547, 37, 0, 65548, 37, 0, 65549, 37, 0, 65550, 37, 0, 65551, 37, 0, 65552, 37, 0, 65553, 37, 0, 65554, 37, 0, 65555, 37, 0, 131072, 38, 0, 131073, 37, 0, 131074, 37, 0, 131075, 37, 0, 131076, 37, 0, 131077, 37, 0, 131078, 37, 0, 131079, 37, 0, 131080, 37, 0, 131081, 37, 0, 131082, 37, 0, 131083, 37, 0, 131084, 37, 0, 131085, 37, 0, 131086, 37, 0, 131087, 37, 0, 131088, 37, 0, 131089, 37, 0, 131090, 37, 0, 131091, 37, 0, 196608, 38, 0, 196609, 37, 0, 196610, 37, 0, 196611, 37, 0, 196612, 37, 0, 196613, 37, 0, 196614, 37, 0, 196615, 37, 0, 196616, 37, 0, 196617, 37, 0, 196618, 37, 0, 196619, 37, 0, 196620, 37, 0, 196621, 37, 0, 196622, 37, 0, 196623, 37, 0, 196624, 37, 0, 196625, 37, 0, 196626, 37, 0, 196627, 37, 0, 262144, 38, 0, 262145, 37, 0, 262146, 37, 0, 262147, 37, 0, 262148, 37, 0, 262149, 37, 0, 262150, 37, 0, 262151, 37, 0, 262152, 37, 0, 262153, 37, 0, 262154, 37, 0, 262155, 37, 0, 262156, 37, 0, 262157, 37, 0, 262158, 37, 0, 262159, 37, 0, 262160, 37, 0, 262161, 37, 0, 262162, 37, 0, 262163, 37, 0, 327680, 38, 0, 327681, 37, 0, 327682, 37, 0, 327683, 37, 0, 327684, 37, 0, 327685, 37, 0, 327686, 37, 0, 327687, 37, 0, 327688, 37, 0, 327689, 37, 0, 327690, 37, 0, 327691, 37, 0, 327692, 37, 0, 327693, 37, 0, 327694, 37, 0, 327695, 37, 0, 327696, 37, 0, 327697, 37, 0, 327698, 37, 0, 327699, 37, 0, 393216, 38, 0, 393217, 37, 0, 393218, 37, 0, 393219, 37, 0, 393220, 37, 0, 393221, 37, 0, 393222, 37, 0, 393223, 37, 0, 393224, 37, 0, 393225, 37, 0, 393226, 37, 0, 393227, 37, 0, 393228, 37, 0, 393229, 37, 0, 393230, 37, 0, 393231, 37, 0, 393232, 37, 0, 393233, 37, 0, 393234, 37, 0, 393235, 37, 0, 458752, 38, 0, 458753, 37, 0, 458754, 37, 0, 458755, 37, 0, 458756, 37, 0, 458757, 37, 0, 458758, 37, 0, 458759, 37, 0, 458760, 37, 0, 458761, 37, 0, 458762, 37, 0, 458763, 37, 0, 458764, 37, 0, 458765, 37, 0, 458766, 37, 0, 458767, 37, 0, 458768, 37, 0, 458769, 37, 0, 458770, 37, 0, 458771, 37, 0, 524288, 38, 0, 524289, 37, 0, 524290, 37, 0, 524291, 37, 0, 524292, 37, 0, 524293, 37, 0, 524294, 37, 0, 524295, 37, 0, 524296, 37, 0, 524297, 37, 0, 524298, 37, 0, 524299, 37, 0, 524300, 37, 0, 524301, 37, 0, 524302, 37, 0, 524303, 37, 0, 524304, 37, 0, 524305, 37, 0, 524306, 37, 0, 524307, 37, 0, 589824, 33, 0, 589825, 33, 0, 589826, 33, 0, 589827, 33, 0, 589828, 33, 0, 589829, 33, 0, 589830, 33, 0, 589831, 33, 0, 589832, 33, 0, 589833, 33, 0, 589834, 33, 0, 589835, 33, 0, 589836, 33, 0, 589837, 33, 0, 589838, 33, 0, 589839, 33, 0, 589840, 33, 0, 589841, 33, 0, 589842, 33, 0, 589843, 33, 0, 655360, 35, 0, 655361, 35, 0, 655362, 35, 0, 655363, 35, 0, 655364, 35, 0, 655365, 35, 0, 655366, 35, 0, 655367, 35, 0, 655368, 35, 0, 655369, 35, 0, 655370, 35, 0, 655371, 35, 0, 655372, 35, 0, 655373, 35, 0, 655374, 35, 0, 655375, 35, 0, 655376, 35, 0, 655377, 35, 0, 655378, 35, 0, 655379, 35, 0, 720896, 34, 0, 720897, 34, 0, 720898, 34, 0, 720899, 34, 0, 720900, 34, 0, 720901, 34, 0, 720902, 34, 0, 720903, 34, 0, 720904, 34, 0, 720905, 34, 0, 720906, 34, 0, 720907, 34, 0, 720908, 34, 0, 720909, 34, 0, 720910, 34, 0, 720911, 34, 0, 720912, 34, 0, 720913, 34, 0, 720914, 34, 0, 720915, 34, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 608, 384 )
@@ -948,42 +957,46 @@ suck_power = 80
 shoot_strength = 2000
 default_charge_power = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 19
-collision_mask = 19
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -64, 320 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 1344, 320 )
-shape = SubResource( 40 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 640, -32 )
-shape = SubResource( 36 )
-
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 384, 128 )
+[node name="Boss" type="KinematicBody2D" parent="."]
+position = Vector2( 96, 256 )
 collision_layer = 16
 collision_mask = 16
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+follow_path = NodePath("../Boss Follow Path")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 75, 91 )
+[node name="Collision" type="CollisionShape2D" parent="Boss"]
 shape = SubResource( 41 )
 one_way_collision_margin = 5.0
 
-[node name="Area2D" type="Area2D" parent="KinematicBody2D"]
+[node name="Damage" type="Area2D" parent="Boss"]
 collision_layer = 9
 collision_mask = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Area2D"]
-position = Vector2( 75, 91 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/Damage"]
 shape = SubResource( 42 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+collision_layer = 19
+collision_mask = 19
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2( -64, 320 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 1344, 320 )
+shape = SubResource( 40 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 640, -32 )
+shape = SubResource( 36 )
+
+[node name="Boss Follow Path" type="Path2D" parent="."]
+curve = SubResource( 43 )

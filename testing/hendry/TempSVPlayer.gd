@@ -26,7 +26,7 @@ var released_object : RigidBody2D
 
 var screensize
 
-var velocity = Vector2.ZERO
+var velocity : Vector2 = Vector2.ZERO
 var mouse
 
 func get_input():
@@ -45,6 +45,25 @@ func get_input():
 	hand.look_at(mouse)
 	arm.rotation = hand.rotation
 
+
+func check_jump():
+	var jump_pressed = Input.is_action_pressed("player_jump")
+	var jump_just_pressed = Input.is_action_just_pressed("player_jump")
+	var jump_stop = Input.is_action_just_released("player_jump")
+	
+	#Jump Physics
+	if velocity.y > 0: #Player is falling
+		velocity += Vector2.UP * (-2.81) * (1) #Falling action is faster than jumping action | Like in mario
+		
+	elif velocity.y < 0 && jump_stop: #Player is jumping 
+		velocity += Vector2.UP * (-9.81) * (100) #Jump Height depends on how long you will hold key
+		
+	if is_on_floor():
+		if jump_just_pressed: 
+			velocity = Vector2.DOWN * jump_speed #Normal Jump action
+			jump_stop = false
+
+
 func _physics_process(delta):
 	get_input()
 	
@@ -56,13 +75,11 @@ func _physics_process(delta):
 	position.y = clamp(position.y, 0, screensize.y)
 	
 	object_follow(delta)
+	check_jump()
 	
 	# movement
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP, false, 10, PI/4, false)
-	if Input.is_action_just_pressed("player_jump"):
-		if is_on_floor():
-			velocity.y = jump_speed
 	
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
@@ -132,7 +149,8 @@ func object_follow(delta):
 	for item in inventory.get_inventory():
 		if item != null:
 			var body : RigidBody2D = item
-			body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 80)
+			lerp(body.global_position, inventory.global_position, 80)
+			# body.global_position = body.global_position.linear_interpolate(inventory.global_position, delta * 80)
 			body.global_rotation = inventory.global_rotation
 
 func get_inventory():

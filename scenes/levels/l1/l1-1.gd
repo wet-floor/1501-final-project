@@ -14,6 +14,7 @@ export var pants_limit = 2
 
 # fields
 onready var laundry_basket = get_node("Laundry Basket")
+onready var player = get_node("tdPlayer")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,7 +30,10 @@ func _physics_process(delta):
 
 func get_input():
 	if Input.is_action_just_released("player_interact"):
-		if !reached_max_pants:
+		var player_selected_item = player.get_inventory()[player.get_currently_selected_index()]
+		if player_selected_item == null:
+			return
+		if !reached_max_pants and player_selected_item.is_in_group("pants"):
 			if !is_pants_checked:
 				is_pants_checked = true
 				print("no tissues here...")
