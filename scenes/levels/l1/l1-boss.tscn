@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://testing/hendry/TempSVPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/l1/Boss.gd" type="Script" id=2]
@@ -927,7 +927,43 @@ extents = Vector2( 640, 32 )
 
 [sub_resource type="Curve2D" id=43]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 96, 256, 0, 0, 0, 0, 1184, 256 )
+"points": PoolVector2Array( 0, 0, 0, 0, 96, 256, 0, 0, 0, 0, 1184, 256, 0, 0, 0, 0, 96, 256, 0, 0, 0, 0, 96, 256 )
+}
+
+[sub_resource type="Curve2D" id=44]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 96, 32, 0, 0, 0, 0, 1184, 32 )
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 96, 256 ) ]
+}
+
+[sub_resource type="Animation" id=46]
+resource_name = "Thwomp"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Boss:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 1.5, 2.4 ),
+"transitions": PoolRealArray( 1, 0.196146, 1, 1 ),
+"update": 0,
+"values": [ 256.0, 300.0, 480.0, 256.0 ]
 }
 
 [node name="Node" type="Node"]
@@ -948,11 +984,12 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 608, 384 )
+position = Vector2( 608, 512 )
 collision_layer = 9
 collision_mask = 9
 speed = 900
 jump_speed = -1400
+friction = 0.393
 suck_power = 80
 shoot_strength = 2000
 default_charge_power = 0
@@ -965,7 +1002,8 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-follow_path = NodePath("../Boss Follow Path")
+move_speed = 2
+follow_path = NodePath("../BossFollowPath")
 
 [node name="Collision" type="CollisionShape2D" parent="Boss"]
 shape = SubResource( 41 )
@@ -998,5 +1036,20 @@ shape = SubResource( 40 )
 position = Vector2( 640, -32 )
 shape = SubResource( 36 )
 
-[node name="Boss Follow Path" type="Path2D" parent="."]
+[node name="BossFollowPath" type="Path2D" parent="."]
 curve = SubResource( 43 )
+
+[node name="BossFollowLocation" type="PathFollow2D" parent="BossFollowPath"]
+position = Vector2( 96, 256 )
+
+[node name="ItemDropPath" type="Path2D" parent="."]
+curve = SubResource( 44 )
+
+[node name="ItemSpawnLocation" type="PathFollow2D" parent="ItemDropPath"]
+position = Vector2( 96, 32 )
+
+[node name="BossAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 45 )
+anims/Thwomp = SubResource( 46 )
+
+[connection signal="body_entered" from="Boss/Damage" to="." method="_on_Damage_body_entered"]
