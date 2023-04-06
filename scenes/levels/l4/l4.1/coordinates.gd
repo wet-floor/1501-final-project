@@ -1,3 +1,3 @@
 extends Node2D
 
-var object_position = Vector2(0, 0)
+var object_position = Vector2(480, 224)
