@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://testing/hendry/TempSVPlayer.gd" type="Script" id=1]
 [ext_resource path="res://testing/assets/arm.png" type="Texture" id=2]
 [ext_resource path="res://scenes/common/player/inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://testing/hendry/svplayer.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.0
@@ -15,10 +16,12 @@ extents = Vector2( 28.5, 10.625 )
 script = ExtResource( 1 )
 suck_power = 201
 
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.123, 0.124 )
+texture = ExtResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
 
 [node name="Hand" type="Area2D" parent="."]
 __meta__ = {
