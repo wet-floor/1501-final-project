@@ -1,7 +1,5 @@
 extends Area2D
 
-export (bool) var locked = false
-
 func _ready():
 	connect("body_entered", self, "on_teleporter_entered")
 
