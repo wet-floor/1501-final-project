@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/put-your-pants-in.wav-2b2729b8029062698e4211f86f8d80cd.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/put-your-pants-in.wav"
+dest_files=[ "res://.import/put-your-pants-in.wav-2b2729b8029062698e4211f86f8d80cd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=176400
+edit/loop_end=-1
+compress/mode=0
