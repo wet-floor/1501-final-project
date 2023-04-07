@@ -105,6 +105,8 @@ func _on_dialogue_ended():
 		minThwompCooldown.start()
 		maxThwompCooldown.start()
 		regretTickTime.start()
+		$PreBossMusic.stop()
+		$BossMusic.play()
 
 
 func _on_BossAnimationPlayer_animation_finished(anim_name):

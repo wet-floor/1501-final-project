@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pre-washing-time.wav-6e87ed920ead9e5eb1ba2ec85e00491d.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/pre-washing-time.wav"
+dest_files=[ "res://.import/pre-washing-time.wav-6e87ed920ead9e5eb1ba2ec85e00491d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

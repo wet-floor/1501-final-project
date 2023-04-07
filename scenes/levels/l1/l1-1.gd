@@ -18,11 +18,13 @@ export var pants_limit = 2
 onready var laundry_basket = get_node("Laundry Basket")
 onready var player = get_node("tdPlayer")
 onready var dialogue_box = get_node("popupUI/popupBox")
+onready var fade_animation = get_node("Fade")
+onready var fade_box = get_node("FadeBox")
 
 
 func _ready():
 	$popupUI.hide()
-	dialogue_box.connect("messageEnded", self, "_on_dialogue_ended")
+	dialogue_box.connect("dialogueEnded", self, "_on_dialogue_ended")
 	laundry_basket.connect("eject", self, "_on_laundry_ejected")
 
 
@@ -65,7 +67,7 @@ func _on_Washing_Machine_Input_body_entered(body):
 			reached_max_pants = true
 		if laundry_basket.get_storage() == 0:
 			all_finished = true
-			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Heh, believing me is clearly your problem.[/color]")	
+			fade_animation.play("later_fade_in")
 
 
 func _on_dialogue_ended():
@@ -78,3 +80,10 @@ func _on_laundry_ejected():
 		$popupUI.show()
 		dialogue_box.showText("[color=white][center]You", "[color=white]Maybe I can press F to check if there are any tissues in those pockets.[/color]")	
 		first_check = true
+
+
+func _on_Fade_animation_finished(anim_name):
+	if anim_name == "later_fade_in":
+		fade_box.modulate = Color(255, 255, 255, 0)
+		dialogue_box.showText("[color=white][center]You", "[color=white]There are tissues everywhere! You egged me on![/color]")
+		dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Heh, believing me is clearly your problem.[/color]")
