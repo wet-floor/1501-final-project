@@ -73,12 +73,14 @@ func _physics_process(delta):
 		boss.States.DEAD:
 			boss.hide()
 			boss.global_position = dead_boss_position.global_position
-
-				
 		
 	if regret_bar >= 100:
 		boss.set_state(boss.States.DEAD)
 		print("boss dead")
+
+
+func _process(delta):
+	$inventoryUI.update_inventory(player)
 
 
 func _on_Damage_body_entered(body):

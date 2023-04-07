@@ -10,6 +10,7 @@ export (int, 0, 200) var inertia = 100
 onready var hand = get_node("Hand")
 onready var inventory = get_node("Hand/Inventory")
 onready var arm = get_node("Arm Collision")
+onready var sprite = get_node("AnimatedSprite")
 
 var direct_range_objects = []
 var charge_power = 0
@@ -31,17 +32,28 @@ var mouse
 
 func get_input():
 	var dir = 0
-	if Input.is_action_pressed("player_right"):
+	mouse = get_global_mouse_position()
+	
+	if Input.is_action_just_pressed("player_right") and Input.is_action_pressed("player_left"):
+		sprite.play("left_still")
+	elif Input.is_action_pressed("player_right") and !Input.is_action_pressed("player_left"):
 		dir += 1
-	if Input.is_action_pressed("player_left"):
+		sprite.play("right")
+	elif Input.is_action_pressed("player_left") and !Input.is_action_pressed("player_right"):
 		dir -= 1
+		sprite.play("left")
+	else:
+		if mouse.x - global_position.x < 0:
+			sprite.play("left_still")
+		else:
+			sprite.play("right_still")
+	
 	if dir != 0:
 		velocity.x = lerp(velocity.x, dir * speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0, friction)
 	
 	# aiming
-	mouse = get_global_mouse_position()
 	hand.look_at(mouse)
 	arm.rotation = hand.rotation
 

@@ -24,7 +24,7 @@ onready var fade_box = get_node("FadeBox")
 
 func _ready():
 	$popupUI.hide()
-	dialogue_box.connect("dialogueEnded", self, "_on_dialogue_ended")
+	dialogue_box.connect("messageEnded", self, "_on_dialogue_ended")
 	laundry_basket.connect("eject", self, "_on_laundry_ejected")
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://testing/hendry/TempSVPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/l1/Boss.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://testing/samuel/assets/[color=white][center]Washing Machine.jpg" type="Texture" id=7]
 [ext_resource path="res://assets/audio/music/pre-washing-time.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/audio/music/its-washing-time.wav" type="AudioStream" id=9]
+[ext_resource path="res://testing/samuel/inventoryUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -1108,6 +1109,12 @@ stream = ExtResource( 9 )
 [node name="PreBossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 autoplay = true
+
+[node name="inventoryUI" parent="." instance=ExtResource( 10 )]
+margin_left = 960.0
+margin_top = 0.0
+margin_right = 23.0
+margin_bottom = -518.0
 
 [connection signal="body_entered" from="Boss/Damage" to="." method="_on_Damage_body_entered"]
 [connection signal="animation_finished" from="BossAnimationPlayer" to="." method="_on_BossAnimationPlayer_animation_finished"]
