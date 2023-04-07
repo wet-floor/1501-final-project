@@ -35,7 +35,7 @@ func setName(name):
 	item_name = item_name.lstrip("{}|[]:<>?,./-=_+`~!@#$%^&*()1234567890")
 	item_name = item_name.rstrip("{}|[]:<>?,./-=_+`~!@#$%^&*()1234567890")
 	
-	icon_texture = load("res://scenes/common/objects/" + str(item_name) + ".png")
+	icon_texture = load("res://assets/game/objects/" + str(item_name) + ".png")
 	
 	if icon_texture != null:
 		icon_size = icon_texture.get_size()
