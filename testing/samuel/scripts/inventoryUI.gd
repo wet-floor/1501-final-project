@@ -34,11 +34,13 @@ func update_inventory(player):
 			numNonNullItems += 1
 				
 			if numNonNullItems >= gridcontainer.get_child_count():
-				var inv_slot_new = template_inv_slot.instance()
-				# Testing
-				inv_slot_new.setName(player.get_inventory()[i])
 				
+				var inv_slot_new = template_inv_slot.instance()
+				inv_slot_new.setName(player.get_inventory()[i])
 				gridcontainer.add_child(inv_slot_new, true)
+				
+				inv_slot_new.changeSelected(player)
+
 			else:
 				break
 	return inventoryArray
@@ -47,3 +49,4 @@ func _process(_delta):
 	if gridcontainer.get_child_count() == 0:
 		var inv_slot_new = template_inv_slot.instance()
 		gridcontainer.add_child(inv_slot_new, true)
+	
