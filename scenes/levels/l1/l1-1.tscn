@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://scenes/common/player/tdPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://testing/assets/Room_Builder_free_32x32.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://testing/samuel/popupUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/audio/music/put-your-pants-in.wav" type="AudioStream" id=8]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://testing/samuel/inventoryUI.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=37]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -878,6 +879,12 @@ text = "a while later..."
 [node name="Fade" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 66 )
 anims/later_fade_in = SubResource( 67 )
+
+[node name="inventoryUI" parent="." instance=ExtResource( 10 )]
+margin_left = 0.0
+margin_top = 608.0
+margin_right = -969.0
+margin_bottom = 16.0
 
 [connection signal="body_entered" from="Washing Machine Input" to="." method="_on_Washing_Machine_Input_body_entered"]
 [connection signal="animation_finished" from="Fade" to="." method="_on_Fade_animation_finished"]
