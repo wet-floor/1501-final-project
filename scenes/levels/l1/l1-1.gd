@@ -23,9 +23,10 @@ onready var fade_box = get_node("FadeBox")
 
 
 func _ready():
-	$popupUI.hide()
 	dialogue_box.connect("messageEnded", self, "_on_dialogue_ended")
 	laundry_basket.connect("eject", self, "_on_laundry_ejected")
+	
+	dialogue_box.showText("[color=white][center]You", "[color=white]It's laundry time. I better check my pants pockets before I put them inside the washing machine...[/color]")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,13 +69,14 @@ func _on_Washing_Machine_Input_body_entered(body):
 			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Are you a coward? Why check every pair of pants?[/color]")	
 			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Just thrown 'em all in! Only COWARDS check every one![/color]")	
 			reached_max_pants = true
+			
 		if laundry_basket.get_storage() == 0:
 			all_finished = true
 			fade_animation.play("later_fade_in")
 
 
 func _on_dialogue_ended():
-	if all_finished == true:
+	if all_finished:
 		get_tree().change_scene("res://scenes/levels/l1/l1-boss.tscn")
 
 

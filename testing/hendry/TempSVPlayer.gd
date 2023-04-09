@@ -12,6 +12,9 @@ onready var inventory = get_node("Hand/Inventory")
 onready var arm = get_node("Arm Collision")
 onready var sprite = get_node("AnimatedSprite")
 
+onready var suck_sprite = get_node("Hand/Sprite/Hold")
+onready var shoot_sprite = get_node("Hand/Sprite/Shoot")
+
 var direct_range_objects = []
 var charge_power = 0
 
@@ -102,14 +105,18 @@ func _physics_process(delta):
 func get_action(delta):
 	if Input.is_action_pressed("player_suck"):
 		suck()
+		suck_sprite.show()
 	else:
 		sucking = false
+		suck_sprite.hide()
 	
 	if Input.is_action_pressed("player_shoot"):
 		charge_shot(delta)
+		shoot_sprite.show()
 		
 	if Input.is_action_just_released("player_shoot"):
 		shoot()
+		shoot_sprite.hide()
 		
 
 func suck():

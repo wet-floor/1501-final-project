@@ -10,6 +10,8 @@ onready var item_drop_path = get_node("ItemDropPath")
 onready var item_spawn_location = get_node("ItemDropPath/ItemSpawnLocation")
 
 onready var boss_animation_player = get_node("BossAnimationPlayer")
+onready var boss_normal_sprite = get_node("Boss/Normal")
+onready var boss_angry_sprite = get_node("Boss/Angry")
 
 onready var dialogue_box = get_node("popupUI/popupBox")
 
@@ -46,10 +48,12 @@ func _physics_process(delta):
 	
 	match boss_state:
 		boss.States.START:
+			boss_angry_sprite.hide()
 			boss_follow_location.unit_offset = 0.25  # brings laundry machine to the middle
 			boss.global_position = lerp(boss.global_position, boss_follow_location.global_position, boss.move_speed * delta)
 
 		boss.States.CHASE:
+			boss_angry_sprite.hide()
 			boss_follow_location.offset = boss_follow_path.curve.get_closest_offset(player.global_position)
 			boss.global_position = lerp(boss.global_position, boss_follow_location.global_position, boss.move_speed * delta)
 			
@@ -64,6 +68,7 @@ func _physics_process(delta):
 				minThwompCooldown.stop()
 				
 		boss.States.THWOMP:
+			boss_angry_sprite.show()
 			boss_follow_location.offset = boss_follow_path.curve.get_closest_offset(player.global_position)
 			boss_animation_player.play("Thwomp")
 
@@ -71,12 +76,10 @@ func _physics_process(delta):
 			pass
 		
 		boss.States.DEAD:
+			print("dead")
+			boss_angry_sprite.hide()
 			boss.hide()
 			boss.global_position = dead_boss_position.global_position
-		
-	if regret_bar >= 100:
-		boss.set_state(boss.States.DEAD)
-		print("boss dead")
 
 
 func _process(delta):
@@ -96,6 +99,7 @@ func _on_Damage_body_entered(body):
 		if regret_bar + laundry_damage > 100:
 			boss.set_state(boss.States.DEAD)
 			dialogue_box.showText("[color=white][center]Washing Machine", "[wave amp=30 freq=6][color=white]NOOOOOOOOOOO[/color][/wave]")	
+			regretTickTime.stop()
 			return
 		
 		regret_bar += laundry_damage
