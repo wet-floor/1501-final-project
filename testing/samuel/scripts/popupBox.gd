@@ -44,7 +44,7 @@ func showText(name, text):
 	$speakerDialog.visible_characters = 0
 	
 	if name != null:
-		$speakerPortrait.texture = load("res://testing/samuel/assets/" + str(name) + ".jpg")
+		$speakerPortrait.texture = load("res://assets/game/characters/" + str(name) + ".jpg")
 	else:
 		$speakerPortrait.texture = null
 
