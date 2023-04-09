@@ -42,3 +42,5 @@ func _on_MusicVolumeSlider_value_changed(value):
 func _on_SEVolumeSlider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SE"), value)
 
+func _on_backToMenu_pressed():
+	get_tree().change_scene("res://scenes/title/mainMenu.tscn")

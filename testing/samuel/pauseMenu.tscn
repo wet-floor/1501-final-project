@@ -209,9 +209,21 @@ custom_styles/pressed = SubResource( 20 )
 custom_styles/normal = SubResource( 10 )
 text = "Volume"
 
+[node name="MenuButton" type="Button" parent="pauseMenuVisual"]
+margin_left = 74.0
+margin_top = 251.0
+margin_right = 398.0
+margin_bottom = 301.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 14 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/normal = SubResource( 10 )
+text = "Level Select"
+
 [connection signal="pressed" from="pauseButton" to="." method="_on_pauseButton_pressed"]
 [connection signal="value_changed" from="pauseMenuVisual/SEVolumeSlider" to="." method="_on_SEVolumeSlider_value_changed"]
 [connection signal="value_changed" from="pauseMenuVisual/MusicVolumeSlider" to="." method="_on_MusicVolumeSlider_value_changed"]
 [connection signal="pressed" from="pauseMenuVisual/BackButtonVolume" to="." method="_on_BackButtonVolume_pressed"]
 [connection signal="pressed" from="pauseMenuVisual/BackButtonMain" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="pauseMenuVisual/VolumeButton" to="." method="_on_VolumeButton_pressed"]
+[connection signal="pressed" from="pauseMenuVisual/MenuButton" to="." method="_on_backToMenu_pressed"]
