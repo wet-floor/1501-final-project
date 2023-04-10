@@ -860,7 +860,6 @@ shape = SubResource( 36 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -80.0
 autoplay = true
 
 [node name="FadeBox" type="ColorRect" parent="."]
