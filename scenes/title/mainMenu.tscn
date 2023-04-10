@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://testing/samuel/assets/loseit.png" type="Texture" id=1]
 [ext_resource path="res://scenes/title/mainMenu.gd" type="Script" id=2]
 [ext_resource path="res://Retro Gaming.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/HUD/art/wetfloor.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 31
@@ -121,6 +122,96 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="Animation" id=21]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("wetfloorLogo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ColorRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "dissolve"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("dissolve_rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "dissolve and resolve"
+
+[sub_resource type="Animation" id=24]
+resource_name = "logo"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("wetfloorLogo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.9, 1.6, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "white-fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="mainMenu" type="Control"]
 anchor_right = 1.0
@@ -288,6 +379,36 @@ custom_styles/hover = SubResource( 18 )
 custom_styles/pressed = SubResource( 19 )
 custom_styles/normal = SubResource( 20 )
 text = "Volume"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 21 )
+anims/dissolve = SubResource( 22 )
+"anims/dissolve and resolve" = SubResource( 23 )
+anims/logo = SubResource( 24 )
+anims/white-fade = SubResource( 25 )
+
+[node name="dissolve_rect" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="wetfloorLogo" type="Sprite" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 1014, 319 )
+scale = Vector2( 0.89726, 0.82835 )
+texture = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.25
 
 [connection signal="pressed" from="levelSelect" to="." method="_on_levelSelect_pressed"]
 [connection signal="pressed" from="levelSelectionPanel/levelSelect1" to="." method="_on_levelSelect1_pressed"]

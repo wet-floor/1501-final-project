@@ -1,6 +1,19 @@
 extends Control
 
 func _ready():
+	$wetfloorLogo.show()
+	#$white_rect.show()
+	$dissolve_rect.show()
+	
+	$Timer.start()
+	yield($Timer, "timeout")
+	
+	$AnimationPlayer.play("logo")
+	
+	yield($AnimationPlayer, "animation_finished")
+	
+	$AnimationPlayer.play_backwards("white-fade")
+	
 	$levelSelectionPanel.hide()
 	$pauseMenuVisual.hide()
 	$pauseMenuVisual/SEVolume.hide()
@@ -15,19 +28,19 @@ func _on_levelSelect_pressed():
 	$optionSelect.hide()
 	
 func _on_levelSelect1_pressed():
-	get_tree().change_scene("res://scenes/levels/l1/l1-1.tscn")
+	SceneTransition.change_scene("res://scenes/levels/l1/l1-1.tscn")
 
 
 func _on_levelSelect2_pressed():
-	get_tree().change_scene("res://scenes/levels/l2/l2.tscn")
+	SceneTransition.change_scene("res://scenes/levels/l2/l2.tscn")
 
 
 func _on_levelSelect3_pressed():
-	get_tree().change_scene("res://scenes/levels/l3/l3-1.tscn")
+	SceneTransition.change_scene("res://scenes/levels/l3/l3-1.tscn")
 
 
 func _on_levelSelect4_pressed():
-	get_tree().change_scene("res://scenes/levels/l4/l4.1/l4-1.tscn")
+	SceneTransition.change_scene("res://scenes/levels/l4/l4.1/l4-1.tscn")
 
 func _on_backButton_pressed():
 	$levelSelectionPanel.hide()
