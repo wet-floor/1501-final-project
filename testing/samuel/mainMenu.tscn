@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="mainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="StartOptions" type="VBoxContainer" parent="."]
+margin_left = 420.0
+margin_top = 401.0
+margin_right = 832.0
+margin_bottom = 681.0
+
+[node name="GridContainer" type="GridContainer" parent="StartOptions"]
+margin_right = 412.0
+margin_bottom = 20.0
+columns = 3
+
+[node name="Button2" type="Button" parent="StartOptions/GridContainer"]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="Button" type="Button" parent="StartOptions/GridContainer"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 20.0
