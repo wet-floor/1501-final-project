@@ -113,6 +113,10 @@ func _on_dialogue_ended():
 		regretTickTime.start()
 		$PreBossMusic.stop()
 		$BossMusic.play()
+	
+	if boss.state == boss.States.DEAD:
+		get_tree().change_scene("res://scenes/levels/l2/l2.tscn")
+		Physics2DServer.area_set_param(get_viewport().get_world_2d().space, Physics2DServer.AREA_PARAM_GRAVITY_VECTOR, Vector2(0, 0))
 
 
 func _on_BossAnimationPlayer_animation_finished(anim_name):
@@ -130,6 +134,10 @@ func _on_Regret_timeout():
 
 
 func _on_landing():
+	
+	if boss.get_state() == boss.States.DEAD:
+		return
+	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	

@@ -26,7 +26,10 @@ func _ready():
 	dialogue_box.connect("messageEnded", self, "_on_dialogue_ended")
 	laundry_basket.connect("eject", self, "_on_laundry_ejected")
 	
+	dialogue_box.showText("[color=white][center]You", "[color=white]Press F to advance dialogue. [/color]")
 	dialogue_box.showText("[color=white][center]You", "[color=white]It's laundry time. I better check my pants pockets before I put them inside the washing machine...[/color]")
+	dialogue_box.showText("[color=white][center]You", "[color=white]I'll hold right mouse button to suck up a pair of pants from the laundry basket.[/color]")
+	dialogue_box.showText("[color=white][center]You", "[color=white]Then, I'll press F to check for tissues and whatnot in that pair.[/color]")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,7 +49,8 @@ func get_input():
 		if !reached_max_pants and player_selected_item.is_in_group("pants"):
 			if !is_pants_checked:
 				is_pants_checked = true
-				dialogue_box.showText("[color=white][center]You", "[color=white]No tissues here... I guess I'll just chuck it into the washing machine.[/color]")	
+				dialogue_box.showText("[color=white][center]You", "[color=white]No tissues here... I guess I'll just chuck it into the washing machine.[/color]")
+				dialogue_box.showText("[color=white][center]You", "[color=white]Hold left mouse button to charge up a shot, and release it to shoot.[/color]")
 
 
 func _on_Washing_Machine_Input_body_entered(body):
@@ -67,7 +71,7 @@ func _on_Washing_Machine_Input_body_entered(body):
 		print("pants: ", pants)
 		if pants >= pants_limit and !reached_max_pants:
 			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Are you a coward? Why check every pair of pants?[/color]")	
-			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Just thrown 'em all in! Only COWARDS check every one![/color]")	
+			dialogue_box.showText("[color=white][center]Washing Machine", "[color=white]Just throw 'em all in! Only COWARDS check every one![/color]")	
 			reached_max_pants = true
 			
 		if laundry_basket.get_storage() == 0:
