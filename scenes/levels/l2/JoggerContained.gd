@@ -1,4 +1,4 @@
-extends Node
+extends RigidBody2D
 
 
 export (int, 0, 2) var health = 1
