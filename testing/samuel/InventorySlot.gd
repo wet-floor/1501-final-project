@@ -16,10 +16,15 @@ func _ready():
 		icon_size = icon_texture.get_size()
 		var targetH = 10
 		var targetW = 10
-	
-		var scale = Vector2((icon_size.x/(icon_size.x/targetW))/100, (icon_size.y/(icon_size.y/targetH))/100)
 		$Icon/Sprite.texture = icon_texture
-		$Icon/Sprite.scale = scale
+		
+		var new_texture = $Icon/Sprite.texture.get_size()
+		var new_size = Vector2(104, 96)
+		var scale_factorx = 1
+		var scale_factory = 1
+		scale_factorx = new_size.x / new_texture.x
+		scale_factory = new_size.y / new_texture.y	
+		$Icon/Sprite.scale = Vector2(int(scale_factorx), int(scale_factory))
 
 func setName(name):
 	true_name = str(name)
@@ -37,14 +42,7 @@ func setName(name):
 	
 	icon_texture = load("res://assets/game/objects/" + str(item_name) + ".png")
 	
-	if icon_texture != null:
-		icon_size = icon_texture.get_size()
-		var targetH = 10
-		var targetW = 10
 
-		var scale = Vector2((icon_size.x/(icon_size.x/targetW))/100, (icon_size.y/(icon_size.y/targetH))/100)
-		$Icon/Sprite.texture = icon_texture
-		$Icon/Sprite.scale = scale
 
 func getName():
 	return str(true_name)
