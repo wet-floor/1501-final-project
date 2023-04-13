@@ -884,7 +884,6 @@ custom_fonts/normal_font = SubResource( 65 )
 text = "a while later..."
 
 [node name="inventoryUI" parent="." instance=ExtResource( 10 )]
-visible = false
 margin_left = 0.0
 margin_top = 608.0
 margin_right = -969.0
