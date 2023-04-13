@@ -8,7 +8,7 @@ var speakerName
 var shown = false
 var finished = false
 signal messageEnded
-var end_dialogue = false
+export var end_dialogue = false
 
 # Note: bold font currently has settings to be more spaced instead of bold, 
 # and code text is simply smaller text size. This can be checked in the 2D inspector for text.

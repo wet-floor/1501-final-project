@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/jogging-tunes.mp3-267faac80643b4fc78d4db5cc541a879.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/jogging-tunes.mp3"
+dest_files=[ "res://.import/jogging-tunes.mp3-267faac80643b4fc78d4db5cc541a879.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

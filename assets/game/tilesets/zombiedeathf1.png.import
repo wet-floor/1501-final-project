@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grasspx.png-52d50f217842a2b7613a460e112fcc1a.stex"
+path="res://.import/zombiedeathf1.png-bd16103e37f0c86572447a60d426d8ba.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/game/tilesets/grasspx.png"
-dest_files=[ "res://.import/grasspx.png-52d50f217842a2b7613a460e112fcc1a.stex" ]
+source_file="res://assets/game/tilesets/zombiedeathf1.png"
+dest_files=[ "res://.import/zombiedeathf1.png-bd16103e37f0c86572447a60d426d8ba.stex" ]
 
 [params]
 

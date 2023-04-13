@@ -1,12 +1,20 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/common/player/tdPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/levels/l2/l2.gd" type="Script" id=2]
 [ext_resource path="res://scenes/levels/l2/Joggers.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/game/tilesets/grasspx.png" type="Texture" id=4]
+[ext_resource path="res://assets/game/tilesets/grasspx2.png" type="Texture" id=4]
 [ext_resource path="res://scenes/levels/l2/wetFloorSign.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/game/objects/bushpxsmall.png" type="Texture" id=6]
 [ext_resource path="res://scenes/levels/l2/JoggerContained.tscn" type="PackedScene" id=7]
+[ext_resource path="res://testing/samuel/popupUI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/audio/music/jogging-tunes.mp3" type="AudioStream" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 646.5, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47, 422.5 )
 
 [node name="RootNode" type="Node"]
 script = ExtResource( 2 )
@@ -18,23 +26,22 @@ margin_bottom = 716.0
 texture = ExtResource( 4 )
 expand = true
 
-[node name="SpawnTimer" type="Timer" parent="."]
-autostart = true
+[node name="TextureRect6" type="TextureRect" parent="."]
+margin_left = 1034.0
+margin_top = 3.0
+margin_right = 1277.0
+margin_bottom = 243.0
+texture = ExtResource( 6 )
+expand = true
 
-[node name="tdPlayer" parent="." instance=ExtResource( 1 )]
-position = Vector2( 674, 45 )
-
-[node name="Joggers" parent="." instance=ExtResource( 3 )]
-position = Vector2( 666, 751 )
-collision_layer = 3
-collision_mask = 3
-
-[node name="Joggers2" parent="." instance=ExtResource( 7 )]
-
-[node name="wetFloorSign" parent="." instance=ExtResource( 5 )]
-position = Vector2( 693, 385 )
-collision_layer = 3
-collision_mask = 3
+[node name="TextureRect5" type="TextureRect" parent="."]
+margin_left = 6.0
+margin_top = -1.0
+margin_right = 236.0
+margin_bottom = 188.0
+texture = ExtResource( 6 )
+expand = true
+flip_h = true
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 margin_left = 1104.0
@@ -52,21 +59,62 @@ margin_bottom = 750.0
 texture = ExtResource( 6 )
 flip_h = true
 
-[node name="TextureRect5" type="TextureRect" parent="."]
-margin_left = 6.0
-margin_top = -1.0
-margin_right = 236.0
-margin_bottom = 188.0
-texture = ExtResource( 6 )
-expand = true
-flip_h = true
+[node name="popupUI" parent="." instance=ExtResource( 8 )]
 
-[node name="TextureRect6" type="TextureRect" parent="."]
-margin_left = 1034.0
-margin_top = 3.0
-margin_right = 1277.0
-margin_bottom = 243.0
-texture = ExtResource( 6 )
-expand = true
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.501
+autostart = true
+
+[node name="TextTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.643
+one_shot = true
+autostart = true
+
+[node name="tdPlayer" parent="." instance=ExtResource( 1 )]
+position = Vector2( 674, 45 )
+
+[node name="Joggers" parent="." instance=ExtResource( 3 )]
+position = Vector2( 677, 874 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="Joggers2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 839, 839 )
+
+[node name="wetFloorSign" parent="." instance=ExtResource( 5 )]
+position = Vector2( 693, 385 )
+collision_layer = 3
+collision_mask = 3
+mass = 1.12
+linear_damp = 0.854
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -12.235
+pitch_scale = 0.8
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 637, -29.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 643, 746 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -34, 346 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1312, 359 )
+shape = SubResource( 2 )
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="TextTimer" to="." method="_on_TextTimer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="kill" from="wetFloorSign" to="." method="_on_wetFloorSign_kill"]
