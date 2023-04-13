@@ -10,6 +10,8 @@ var reached_max_pants = false
 var first_check = false
 var is_pants_checked = false
 var all_finished = false
+var init_tutorial = false
+var init_tutorial2 = false
 
 # conditions
 export var pants_limit = 2
@@ -26,11 +28,6 @@ func _ready():
 	dialogue_box.connect("messageEnded", self, "_on_dialogue_ended")
 	laundry_basket.connect("eject", self, "_on_laundry_ejected")
 	
-	dialogue_box.showText("[color=white][center]You", "[color=white]Press F to advance dialogue. [/color]")
-	dialogue_box.showText("[color=white][center]You", "[color=white]It's laundry time. I better check my pants pockets before I put them inside the washing machine...[/color]")
-	dialogue_box.showText("[color=white][center]You", "[color=white]I'll hold right mouse button to suck up a pair of pants from the laundry basket.[/color]")
-	dialogue_box.showText("[color=white][center]You", "[color=white]Then, I'll press F to check for tissues and whatnot in that pair.[/color]")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -39,7 +36,15 @@ func _physics_process(delta):
 
 func _process(delta):
 	$inventoryUI.update_inventory(player)
-
+	if init_tutorial2 == false and init_tutorial == true:
+		# dialogue_box.showText("[color=white][center]You", "[color=white]Then, I'll press F to check for tissues and stuff.[/color]")
+		init_tutorial2 = true
+		
+	if init_tutorial == false: 
+		dialogue_box.showText("[color=white][center]You", "[color=white]I better check my pants pockets before I put them inside the washing machine... (F to advance) [/color]")
+		dialogue_box.showText("[color=white][center]You", "[color=white]I can hold the right mouse button to suck a pair of pants from the laundry basket.[/color]")
+		init_tutorial = true
+	
 
 func get_input():
 	if Input.is_action_just_released("player_interact"):
